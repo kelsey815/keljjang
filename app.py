@@ -1,67 +1,47 @@
 """박스오피스 × OTT 랭킹 비교 대시보드.
 
-KOBIS 박스오피스(2025년 이후 극장 개봉작)와 네 개 OTT 플랫폼 상위 랭킹을
-자동 수집·매칭해 표·차트로 보여준다. Playwright 기반 자동 스크래핑.
+로컬에서 `python scripts/refresh_data.py` 로 수집된 data/*.parquet 파일을 읽어
+KOBIS 박스오피스와 OTT 플랫폼 상위 랭킹을 매칭해 표·차트로 보여준다.
 """
 from __future__ import annotations
 
-import datetime as _dt
-
-import pandas as pd
 import streamlit as st
 
-from playwright_setup import ensure_chromium_installed
-
-ensure_chromium_installed()
-
-from kobis import collect_boxoffice_2025_plus  # noqa: E402
-from matcher import match_ott_to_kobis  # noqa: E402
-from ott_rankings import PLATFORMS, collect_ott_rankings  # noqa: E402
+from data_loader import PLATFORMS, load_kobis, load_meta, load_ott
+from matcher import match_ott_to_kobis
 
 st.set_page_config(page_title="박스오피스 × OTT 랭킹", page_icon="🎬", layout="wide")
 
 st.title("🎬 박스오피스 × OTT 랭킹 비교 대시보드")
+meta = load_meta()
+refreshed = meta.get("refreshed_at", "—")
 st.caption(
     "KOBIS 2025년 이후 극장 개봉작 · 쿠팡플레이 / 티빙 / 왓챠 / 웨이브 · "
-    f"현재 시각 {_dt.datetime.now().strftime('%Y-%m-%d %H:%M')}"
+    f"데이터 갱신: {refreshed}"
 )
 
-# ---- 수동 갱신 버튼 ----
-col_top_a, col_top_b = st.columns([1, 8])
-if col_top_a.button("🔄 데이터 갱신", help="캐시를 지우고 최신 데이터를 다시 수집합니다."):
-    st.cache_data.clear()
-    st.rerun()
-col_top_b.info(
-    "🕐 첫 실행 또는 갱신 시 브라우저 자동화로 박스오피스·OTT 데이터를 수집합니다 (약 30초). "
-    "수집된 데이터는 1시간(박스오피스) / 30분(OTT) 캐시됩니다."
-)
+kobis_df = load_kobis()
+ott_df = load_ott()
 
-# ---- 데이터 수집 ----
-try:
-    kobis_df = collect_boxoffice_2025_plus()
-except Exception as e:  # noqa: BLE001
-    st.error(f"KOBIS 수집 실패: {e}")
-    st.stop()
-
-try:
-    ott_df = collect_ott_rankings(top_n=30)
-except Exception as e:  # noqa: BLE001
-    st.error(f"OTT 랭킹 수집 실패: {e}")
+if kobis_df.empty or ott_df.empty:
+    st.error(
+        "데이터 파일이 비어 있습니다. 로컬에서 `python scripts/refresh_data.py`를 "
+        "실행해 data/*.parquet 파일을 생성·커밋해 주세요."
+    )
     st.stop()
 
 merged = match_ott_to_kobis(ott_df, kobis_df)
 
 # ---- 사이드바 필터 ----
 st.sidebar.header("🔎 필터")
-platform_list = list(PLATFORMS.keys())
 selected_platforms = st.sidebar.multiselect(
-    "플랫폼", platform_list, default=platform_list
+    "플랫폼", PLATFORMS, default=PLATFORMS
 )
 rank_limit = st.sidebar.slider("플랫폼별 영화 Top N", 5, 30, 20)
 only_matched = st.sidebar.checkbox(
     "KOBIS 매칭된 영화만 표시",
     value=False,
-    help="체크하면 2025년 이후 극장 개봉이 확인된 영화만 남깁니다 (추천).",
+    help="체크하면 2025년 이후 극장 개봉이 확인된 영화만 남깁니다.",
 )
 
 view = merged[merged["platform"].isin(selected_platforms)].copy()
@@ -72,8 +52,8 @@ if only_matched:
 # ---- KPI ----
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("KOBIS 2025+ 영화 수", f"{len(kobis_df):,}")
-c2.metric("OTT 랭킹 영화 수(영화만)", f"{len(ott_df):,}")
-matched = view["movieNm"].notna().sum() if not view.empty else 0
+c2.metric("OTT 랭킹 영화 수", f"{len(ott_df):,}")
+matched = int(view["movieNm"].notna().sum()) if not view.empty else 0
 c3.metric("현재 뷰 매칭 성공", f"{matched:,}")
 c4.metric("선택 플랫폼", f"{len(selected_platforms)}개")
 
@@ -106,7 +86,7 @@ for plat in selected_platforms:
                 "누적관객수": st.column_config.NumberColumn(format="%d"),
                 "누적매출액(원)": st.column_config.NumberColumn(format="%d"),
                 "매칭점수": st.column_config.NumberColumn(
-                    help="100 = KOBIS 영화명과 완전일치. 공란 = KOBIS 2025+ 목록에 없음 (시리즈·OTT 오리지널·2024년 이전 개봉 등)"
+                    help="100=완전일치 · 공란=KOBIS 2025+ 목록 미확인(OTT 오리지널·2024년 이전 등)"
                 ),
             },
         )
@@ -173,16 +153,15 @@ else:
 
 st.divider()
 
-# ---- 데이터 내려받기 + 상세 ----
 csv = view.to_csv(index=False).encode("utf-8-sig")
 st.download_button(
     "💾 현재 뷰 CSV 내려받기", csv, file_name="boxoffice_ott.csv", mime="text/csv"
 )
 
 with st.expander("🛠 수집 원본 데이터 보기"):
-    st.write("**KOBIS 2025+ 박스오피스 (수집 원본)**")
+    st.write("**KOBIS 2025+ 박스오피스**")
     st.dataframe(kobis_df, hide_index=True)
     st.write("**OTT 랭킹 (영화만, 플랫폼별)**")
     st.dataframe(ott_df, hide_index=True)
-    st.write("**매칭 실패 항목 — KOBIS 상위에 없는 영화 (OTT 오리지널·2024년 이전 개봉 등)**")
+    st.write("**매칭 실패 항목 — KOBIS 상위에 없는 영화 (OTT 오리지널 등)**")
     st.dataframe(merged[merged["movieNm"].isna()], hide_index=True)
