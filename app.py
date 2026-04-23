@@ -10,9 +10,13 @@ import datetime as _dt
 import pandas as pd
 import streamlit as st
 
-from kobis import collect_boxoffice_2025_plus
-from matcher import match_ott_to_kobis
-from ott_rankings import PLATFORMS, collect_ott_rankings
+from playwright_setup import ensure_chromium_installed
+
+ensure_chromium_installed()
+
+from kobis import collect_boxoffice_2025_plus  # noqa: E402
+from matcher import match_ott_to_kobis  # noqa: E402
+from ott_rankings import PLATFORMS, collect_ott_rankings  # noqa: E402
 
 st.set_page_config(page_title="박스오피스 × OTT 랭킹", page_icon="🎬", layout="wide")
 
