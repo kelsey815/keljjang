@@ -166,8 +166,8 @@ def main() -> None:
         print(f"  · {len(ott_df)}편 (영화만)")
         browser.close()
 
-    kobis_df.to_parquet(DATA / "kobis.parquet", index=False)
-    ott_df.to_parquet(DATA / "ott.parquet", index=False)
+    kobis_df.to_csv(DATA / "kobis.csv", index=False, encoding="utf-8")
+    ott_df.to_csv(DATA / "ott.csv", index=False, encoding="utf-8")
     (DATA / "meta.json").write_text(json.dumps({"refreshed_at": now}, ensure_ascii=False))
     print(f"✅ data/ 저장 완료 · {now}")
 
