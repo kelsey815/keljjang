@@ -27,7 +27,7 @@ _NAVER_OPEN_RE = re.compile(r"개봉\s*일?\s*(\d{4})[년\.\s]+(\d{1,2})[월\.\s
 _NAVER_AUDI_RE = re.compile(r"누적\s*관객수\s*(?:약\s*)?([\d,\.]+)\s*(만|억)?\s*명")
 
 PLATFORMS = {
-    "쿠팡플레이": "coupangplay",
+    "쿠팡플레이": "coupang",
     "티빙": "tving",
     "왓챠": "watcha",
     "웨이브": "wavve",
