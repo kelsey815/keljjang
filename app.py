@@ -11,7 +11,7 @@ import streamlit as st
 from data_loader import PLATFORMS, load_meta, load_movies, load_ott, load_series
 from matcher import attach_movie_meta
 
-st.set_page_config(page_title="박스오피스 × OTT 랭킹", page_icon="🎬", layout="wide")
+st.set_page_config(page_title="플랫폼별 랭킹 비교", page_icon="🏆", layout="wide")
 
 st.markdown(
     """
@@ -28,7 +28,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("🎬 박스오피스 × OTT 랭킹 비교 대시보드")
+st.title("🏆 플랫폼별 랭킹 비교 대시보드")
 meta = load_meta()
 refreshed = meta.get("refreshed_at", "—")
 st.caption(
@@ -114,7 +114,6 @@ display_map = {
     "genres": "장르",
     "openDt": "개봉일",
     "audiCnt_display": "관객수",
-    "year": "연도",
 }
 for plat in selected_platforms:
     plat_df = view[view["platform"] == plat].sort_values("platform_rank").copy()
