@@ -16,6 +16,10 @@ DATA = Path(__file__).parent / "data"
 PLATFORMS = ["쿠팡플레이", "티빙", "왓챠", "웨이브"]
 
 
+def _clean_year(s: pd.Series) -> pd.Series:
+    return s.astype(str).str.replace(r"\.0$", "", regex=True).replace({"nan": "", "None": ""})
+
+
 @st.cache_data(ttl=600, show_spinner=False)
 def load_movies() -> pd.DataFrame:
     path = DATA / "movies.csv"
@@ -23,7 +27,7 @@ def load_movies() -> pd.DataFrame:
         return pd.DataFrame(columns=["title", "year", "openDt", "audiCnt", "director", "genres"])
     df = pd.read_csv(path)
     if "year" in df.columns:
-        df["year"] = df["year"].astype(str)
+        df["year"] = _clean_year(df["year"])
     if "openDt" in df.columns:
         df["openDt"] = df["openDt"].astype("string")
     return df
@@ -36,7 +40,7 @@ def load_series() -> pd.DataFrame:
         return pd.DataFrame(columns=["title", "year", "director", "genres"])
     df = pd.read_csv(path)
     if "year" in df.columns:
-        df["year"] = df["year"].astype(str)
+        df["year"] = _clean_year(df["year"])
     return df
 
 
@@ -49,7 +53,7 @@ def load_ott() -> pd.DataFrame:
         )
     df = pd.read_csv(path)
     if "year" in df.columns:
-        df["year"] = df["year"].astype(str)
+        df["year"] = _clean_year(df["year"])
     return df
 
 
