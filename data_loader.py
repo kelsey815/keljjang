@@ -35,7 +35,7 @@ def load_ott() -> pd.DataFrame:
     path = DATA / "ott.csv"
     if not path.exists():
         return pd.DataFrame(
-            columns=["platform", "rank", "title", "content_type", "year", "href", "platform_movie_rank"]
+            columns=["platform", "rank", "title", "content_type", "kind", "year", "href", "platform_rank"]
         )
     df = pd.read_csv(path)
     if "year" in df.columns:

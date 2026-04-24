@@ -146,9 +146,9 @@ def collect_ott(browser) -> pd.DataFrame:
     df = pd.DataFrame(all_rows)
     if df.empty:
         return df
-    df = df[df["content_type"] == "영화"].copy()
-    df["platform_movie_rank"] = df.groupby("platform")["rank"].rank(method="min").astype(int)
-    return df.sort_values(["platform", "platform_movie_rank"]).reset_index(drop=True)
+    df["kind"] = df["content_type"].apply(lambda x: "영화" if x == "영화" else "시리즈")
+    df["platform_rank"] = df.groupby("platform")["rank"].rank(method="min").astype(int)
+    return df.sort_values(["platform", "platform_rank"]).reset_index(drop=True)
 
 
 def main() -> None:
@@ -163,7 +163,7 @@ def main() -> None:
         print(f"  · {len(kobis_df)}편")
         print("▶ OTT 랭킹 수집 중…")
         ott_df = collect_ott(browser)
-        print(f"  · {len(ott_df)}편 (영화만)")
+        print(f"  · {len(ott_df)}편 (영화+시리즈)")
         browser.close()
 
     kobis_df.to_csv(DATA / "kobis.csv", index=False, encoding="utf-8")

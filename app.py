@@ -1,16 +1,32 @@
 """박스오피스 × OTT 랭킹 비교 대시보드.
 
-로컬에서 `python scripts/refresh_data.py` 로 수집된 data/*.parquet 파일을 읽어
+로컬에서 `python scripts/refresh_data.py` 로 수집된 data/*.csv 파일을 읽어
 KOBIS 박스오피스와 OTT 플랫폼 상위 랭킹을 매칭해 표·차트로 보여준다.
 """
 from __future__ import annotations
 
+import pandas as pd
 import streamlit as st
 
 from data_loader import PLATFORMS, load_kobis, load_meta, load_ott
 from matcher import match_ott_to_kobis
 
 st.set_page_config(page_title="박스오피스 × OTT 랭킹", page_icon="🎬", layout="wide")
+
+st.markdown(
+    """
+    <style>
+    [data-testid="stSidebar"] {
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+    [data-testid="stSidebar"] > div:first-child {
+        padding-top: 1.2rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 st.title("🎬 박스오피스 × OTT 랭킹 비교 대시보드")
 meta = load_meta()
@@ -26,7 +42,7 @@ ott_df = load_ott()
 if kobis_df.empty or ott_df.empty:
     st.error(
         "데이터 파일이 비어 있습니다. 로컬에서 `python scripts/refresh_data.py`를 "
-        "실행해 data/*.parquet 파일을 생성·커밋해 주세요."
+        "실행해 data/*.csv 파일을 생성·커밋해 주세요."
     )
     st.stop()
 
@@ -34,25 +50,35 @@ merged = match_ott_to_kobis(ott_df, kobis_df)
 
 # ---- 사이드바 필터 ----
 st.sidebar.header("🔎 필터")
-selected_platforms = st.sidebar.multiselect(
-    "플랫폼", PLATFORMS, default=PLATFORMS
-)
-rank_limit = st.sidebar.slider("플랫폼별 영화 Top N", 5, 30, 20)
+st.sidebar.markdown("**플랫폼**")
+selected_platforms = [
+    plat for plat in PLATFORMS
+    if st.sidebar.checkbox(plat, value=True, key=f"plat_{plat}")
+]
+st.sidebar.markdown("")
+rank_limit = st.sidebar.slider("플랫폼별 Top N", 5, 30, 20)
 only_matched = st.sidebar.checkbox(
-    "KOBIS 매칭된 영화만 표시",
+    "KOBIS 매칭된 영화만",
     value=False,
     help="체크하면 2025년 이후 극장 개봉이 확인된 영화만 남깁니다.",
 )
 
 view = merged[merged["platform"].isin(selected_platforms)].copy()
-view = view[view["platform_movie_rank"] <= rank_limit]
+view = view[view["platform_rank"] <= rank_limit]
 if only_matched:
     view = view[view["movieNm"].notna()]
+
+
+def _format_opendt(row) -> str:
+    od = row.get("openDt")
+    if pd.isna(od) or str(od).strip() in ("", "nan", "NaT"):
+        return "미개봉" if row.get("kind") == "영화" else "—"
+    return str(od)
 
 # ---- KPI ----
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("KOBIS 2025+ 영화 수", f"{len(kobis_df):,}")
-c2.metric("OTT 랭킹 영화 수", f"{len(ott_df):,}")
+c2.metric("OTT 랭킹 콘텐츠 수", f"{len(ott_df):,}")
 matched = int(view["movieNm"].notna().sum()) if not view.empty else 0
 c3.metric("현재 뷰 매칭 성공", f"{matched:,}")
 c4.metric("선택 플랫폼", f"{len(selected_platforms)}개")
@@ -63,31 +89,28 @@ st.divider()
 st.subheader("📊 플랫폼별 상위 영화 × 박스오피스 성과")
 
 display_map = {
-    "platform_movie_rank": "플랫폼 영화순위",
+    "platform_rank": "순위",
     "title": "OTT 표기명",
-    "movieNm": "KOBIS 공식명",
+    "kind": "유형",
     "openDt": "개봉일",
     "audiCnt": "누적관객수",
     "salesAmt": "누적매출액(원)",
     "year": "OTT표기연도",
-    "match_score": "매칭점수",
 }
 for plat in selected_platforms:
-    plat_df = view[view["platform"] == plat].sort_values("platform_movie_rank")
+    plat_df = view[view["platform"] == plat].sort_values("platform_rank").copy()
     if plat_df.empty:
         continue
     with st.expander(f"▶ {plat} ({len(plat_df)}편)", expanded=True):
+        plat_df["openDt"] = plat_df.apply(_format_opendt, axis=1)
         show = plat_df[list(display_map.keys())].rename(columns=display_map)
         st.dataframe(
             show,
             use_container_width=True,
             hide_index=True,
             column_config={
-                "누적관객수": st.column_config.NumberColumn(format="%d"),
-                "누적매출액(원)": st.column_config.NumberColumn(format="%d"),
-                "매칭점수": st.column_config.NumberColumn(
-                    help="100=완전일치 · 공란=KOBIS 2025+ 목록 미확인(OTT 오리지널·2024년 이전 등)"
-                ),
+                "누적관객수": st.column_config.NumberColumn(format="localized"),
+                "누적매출액(원)": st.column_config.NumberColumn(format="localized"),
             },
         )
 
@@ -107,7 +130,7 @@ else:
             누적매출액=("salesAmt", "first"),
             플랫폼수=("platform", "nunique"),
             플랫폼=("platform", lambda x: ", ".join(sorted(set(x)))),
-            최고순위=("platform_movie_rank", "min"),
+            최고순위=("platform_rank", "min"),
         )
         .query("플랫폼수 >= 2")
         .sort_values(["플랫폼수", "누적관객수"], ascending=[False, False])
@@ -122,8 +145,8 @@ else:
             use_container_width=True,
             hide_index=True,
             column_config={
-                "누적관객수": st.column_config.NumberColumn(format="%d"),
-                "누적매출액": st.column_config.NumberColumn(format="%d"),
+                "누적관객수": st.column_config.NumberColumn(format="localized"),
+                "누적매출액": st.column_config.NumberColumn(format="localized"),
             },
         )
 
@@ -146,8 +169,8 @@ else:
         use_container_width=True,
         hide_index=True,
         column_config={
-            "누적관객수합": st.column_config.NumberColumn(format="%d"),
-            "누적매출액합": st.column_config.NumberColumn(format="%d"),
+            "누적관객수합": st.column_config.NumberColumn(format="localized"),
+            "누적매출액합": st.column_config.NumberColumn(format="localized"),
         },
     )
 
@@ -161,7 +184,7 @@ st.download_button(
 with st.expander("🛠 수집 원본 데이터 보기"):
     st.write("**KOBIS 2025+ 박스오피스**")
     st.dataframe(kobis_df, hide_index=True)
-    st.write("**OTT 랭킹 (영화만, 플랫폼별)**")
+    st.write("**OTT 랭킹 (영화+시리즈, 플랫폼별)**")
     st.dataframe(ott_df, hide_index=True)
-    st.write("**매칭 실패 항목 — KOBIS 상위에 없는 영화 (OTT 오리지널 등)**")
+    st.write("**매칭 실패 항목 — KOBIS 상위에 없는 영화·시리즈 (OTT 오리지널 등)**")
     st.dataframe(merged[merged["movieNm"].isna()], hide_index=True)

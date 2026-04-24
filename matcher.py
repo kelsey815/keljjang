@@ -37,7 +37,15 @@ def match_ott_to_kobis(
 
     matched_idx: list[int | None] = []
     scores: list[int | None] = []
-    for title in ott_df["title"]:
+    content_types = (
+        ott_df["content_type"] if "content_type" in ott_df.columns
+        else ["영화"] * len(ott_df)
+    )
+    for title, ctype in zip(ott_df["title"], content_types):
+        if ctype != "영화":
+            matched_idx.append(None)
+            scores.append(None)
+            continue
         key = normalize(title)
         if not key:
             matched_idx.append(None)
