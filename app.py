@@ -8,7 +8,7 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
-from data_loader import PLATFORMS, load_meta, load_movies, load_ott
+from data_loader import PLATFORMS, load_meta, load_movies, load_ott, load_series
 from matcher import attach_movie_meta
 
 st.set_page_config(page_title="박스오피스 × OTT 랭킹", page_icon="🎬", layout="wide")
@@ -37,6 +37,7 @@ st.caption(
 )
 
 movies_df = load_movies()
+series_df = load_series()
 ott_df = load_ott()
 
 if ott_df.empty:
@@ -46,7 +47,7 @@ if ott_df.empty:
     )
     st.stop()
 
-merged = attach_movie_meta(ott_df, movies_df)
+merged = attach_movie_meta(ott_df, movies_df, series_df)
 
 # ---- 사이드바 필터 ----
 st.sidebar.header("🔎 필터")
