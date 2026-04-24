@@ -20,7 +20,7 @@ def _clean_year(s: pd.Series) -> pd.Series:
     return s.astype(str).str.replace(r"\.0$", "", regex=True).replace({"nan": "", "None": ""})
 
 
-@st.cache_data(ttl=600, show_spinner=False)
+@st.cache_data(ttl=60, show_spinner=False)
 def load_movies() -> pd.DataFrame:
     path = DATA / "movies.csv"
     if not path.exists():
@@ -33,7 +33,7 @@ def load_movies() -> pd.DataFrame:
     return df
 
 
-@st.cache_data(ttl=600, show_spinner=False)
+@st.cache_data(ttl=60, show_spinner=False)
 def load_series() -> pd.DataFrame:
     path = DATA / "series.csv"
     if not path.exists():
@@ -44,7 +44,7 @@ def load_series() -> pd.DataFrame:
     return df
 
 
-@st.cache_data(ttl=600, show_spinner=False)
+@st.cache_data(ttl=60, show_spinner=False)
 def load_ott() -> pd.DataFrame:
     path = DATA / "ott.csv"
     if not path.exists():
