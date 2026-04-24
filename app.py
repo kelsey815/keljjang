@@ -108,8 +108,10 @@ display_map = {
     "platform_rank": "순위",
     "title": "OTT 표기명",
     "kind": "유형",
+    "genres": "장르",
     "openDt": "개봉일",
     "audiCnt_display": "관객수",
+    "director": "감독",
     "year": "연도",
 }
 for plat in selected_platforms:

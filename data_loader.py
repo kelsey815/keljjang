@@ -21,7 +21,7 @@ def load_movies() -> pd.DataFrame:
     """OTT 영화들의 네이버 메타 (제목·연도·개봉일·관객수)."""
     path = DATA / "movies.csv"
     if not path.exists():
-        return pd.DataFrame(columns=["title", "year", "openDt", "audiCnt"])
+        return pd.DataFrame(columns=["title", "year", "openDt", "audiCnt", "director", "genres"])
     df = pd.read_csv(path)
     if "year" in df.columns:
         df["year"] = df["year"].astype(str)
