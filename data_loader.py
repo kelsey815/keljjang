@@ -1,7 +1,7 @@
 """Streamlit 앱이 사용하는 정적 데이터 로더.
 
 scripts/refresh_data.py 가 저장한 CSV 파일을 읽어 DataFrame으로 반환한다.
-Playwright·pyarrow 등 무거운 의존성이 전혀 없다.
+Playwright 등 무거운 의존성이 전혀 없다.
 """
 from __future__ import annotations
 
@@ -17,16 +17,16 @@ PLATFORMS = ["쿠팡플레이", "티빙", "왓챠", "웨이브"]
 
 
 @st.cache_data(ttl=600, show_spinner=False)
-def load_kobis() -> pd.DataFrame:
-    path = DATA / "kobis.csv"
+def load_movies() -> pd.DataFrame:
+    """OTT 영화들의 네이버 메타 (제목·연도·개봉일·관객수)."""
+    path = DATA / "movies.csv"
     if not path.exists():
-        return pd.DataFrame(
-            columns=["movieNm", "openDt", "salesAmt", "audiCnt", "screenCnt", "showCnt"]
-        )
+        return pd.DataFrame(columns=["title", "year", "openDt", "audiCnt"])
     df = pd.read_csv(path)
-    # openDt를 문자열로 유지 (문자 비교·표기 편의)
+    if "year" in df.columns:
+        df["year"] = df["year"].astype(str)
     if "openDt" in df.columns:
-        df["openDt"] = df["openDt"].astype(str)
+        df["openDt"] = df["openDt"].astype("string")
     return df
 
 

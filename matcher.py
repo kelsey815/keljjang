@@ -1,10 +1,9 @@
-"""KOBIS 박스오피스 DataFrame과 OTT 랭킹 DataFrame을 제목 기준으로 매칭."""
+"""OTT 랭킹 DataFrame에 네이버 메타(개봉일·관객수)를 제목+연도 기준으로 붙임."""
 from __future__ import annotations
 
 import re
 
 import pandas as pd
-from rapidfuzz import fuzz, process
 
 _PUNCT_RE = re.compile(r"[\s:\-\(\)\[\]【】·,.!?~「」『』\"']+")
 
@@ -15,67 +14,36 @@ def normalize(title: str) -> str:
     return _PUNCT_RE.sub("", title.lower())
 
 
-def match_ott_to_kobis(
-    ott_df: pd.DataFrame, kobis_df: pd.DataFrame, score_cutoff: int = 88
-) -> pd.DataFrame:
-    """OTT 랭킹 각 행에 KOBIS 박스오피스 컬럼을 붙여 반환. 매칭 실패 시 NaN."""
-    kobis_cols = ["movieNm", "openDt", "audiCnt", "salesAmt", "screenCnt", "showCnt"]
-    existing_cols = [c for c in kobis_cols if c in kobis_df.columns]
+def attach_movie_meta(ott_df: pd.DataFrame, movies_df: pd.DataFrame) -> pd.DataFrame:
+    """ott_df (영화+시리즈) 각 행에 openDt, audiCnt 컬럼을 붙인다.
 
-    if ott_df.empty:
-        return ott_df.assign(**{c: pd.NA for c in existing_cols}, match_score=pd.NA)
+    매칭 키: 정규화된 title + year (문자열). year 충돌시 title만으로 fallback.
+    시리즈(kind != 영화)는 매칭 대상이 아니므로 NaN.
+    """
+    out = ott_df.copy()
+    out["openDt"] = pd.NA
+    out["audiCnt"] = pd.NA
 
-    if kobis_df.empty:
-        return ott_df.assign(**{c: pd.NA for c in existing_cols}, match_score=pd.NA)
+    if movies_df.empty or ott_df.empty:
+        return out
 
-    kobis_norm_map: dict[str, int] = {}
-    for idx, name in enumerate(kobis_df["movieNm"].tolist()):
-        key = normalize(name)
-        if key and key not in kobis_norm_map:
-            kobis_norm_map[key] = idx
-    kobis_keys = list(kobis_norm_map.keys())
+    mv = movies_df.copy()
+    mv["_key_ty"] = mv["title"].map(normalize) + "|" + mv["year"].astype(str).fillna("")
+    mv["_key_t"] = mv["title"].map(normalize)
+    key_ty_map = dict(zip(mv["_key_ty"], mv.index))
+    key_t_map = dict(zip(mv["_key_t"], mv.index))
 
-    matched_idx: list[int | None] = []
-    scores: list[int | None] = []
-    content_types = (
-        ott_df["content_type"] if "content_type" in ott_df.columns
-        else ["영화"] * len(ott_df)
-    )
-    for title, ctype in zip(ott_df["title"], content_types):
-        if ctype != "영화":
-            matched_idx.append(None)
-            scores.append(None)
+    for i, row in out.iterrows():
+        if row.get("kind") != "영화":
             continue
-        key = normalize(title)
-        if not key:
-            matched_idx.append(None)
-            scores.append(None)
+        t = normalize(row.get("title", ""))
+        y = str(row.get("year") or "")
+        idx = key_ty_map.get(f"{t}|{y}")
+        if idx is None:
+            idx = key_t_map.get(t)
+        if idx is None:
             continue
-        if key in kobis_norm_map:
-            matched_idx.append(kobis_norm_map[key])
-            scores.append(100)
-            continue
-        result = process.extractOne(
-            key, kobis_keys, scorer=fuzz.WRatio, score_cutoff=score_cutoff
-        )
-        if result is None:
-            matched_idx.append(None)
-            scores.append(None)
-        else:
-            best_key, score, _ = result
-            matched_idx.append(kobis_norm_map[best_key])
-            scores.append(int(score))
+        out.at[i, "openDt"] = mv.at[idx, "openDt"] if pd.notna(mv.at[idx, "openDt"]) else pd.NA
+        out.at[i, "audiCnt"] = mv.at[idx, "audiCnt"] if pd.notna(mv.at[idx, "audiCnt"]) else pd.NA
 
-    attach = pd.DataFrame(
-        [
-            kobis_df.iloc[i][existing_cols].to_dict()
-            if i is not None
-            else {c: None for c in existing_cols}
-            for i in matched_idx
-        ]
-    )
-    attach["match_score"] = scores
-    merged = pd.concat(
-        [ott_df.reset_index(drop=True), attach.reset_index(drop=True)], axis=1
-    )
-    return merged
+    return out
