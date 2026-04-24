@@ -48,6 +48,21 @@ KINOLIGHTS_PLATFORMS = {
 }
 
 COUPANG_MANUAL_PATH = DATA / "coupang_manual.csv"
+NAVER_URL_OVERRIDES_PATH = DATA / "naver_url_overrides.csv"
+
+
+def _load_naver_url_overrides() -> dict[str, str]:
+    """제목 → 네이버 영화 상세 URL 매핑. 일반 검색으로 원작 카드를 못 찾는 영화 대응용."""
+    if not NAVER_URL_OVERRIDES_PATH.exists():
+        return {}
+    df = pd.read_csv(NAVER_URL_OVERRIDES_PATH)
+    out = {}
+    for _, r in df.iterrows():
+        t = str(r.get("title") or "").strip()
+        u = str(r.get("naver_url") or "").strip()
+        if t and u:
+            out[t] = u
+    return out
 
 WAVVE_APIKEY = "E5F3E0D30947AA5440556471321BB6D9"
 WAVVE_COMMON = (
@@ -174,7 +189,20 @@ def collect_wavve_native() -> list[dict]:
 
 # ---------- 왓챠 홈 "왓챠 TOP 20" 섹션 ----------
 
-def collect_watcha_native(browser) -> list[dict]:
+def collect_watcha_native(browser, max_attempts: int = 4) -> list[dict]:
+    """왓챠 홈은 세션·시간별로 TOP 20 섹션 노출이 불안정(0~20개 가변).
+    여러 번 시도해서 가장 많이 수집된 결과 채택."""
+    best: list[dict] = []
+    for attempt in range(max_attempts):
+        rows = _collect_watcha_once(browser)
+        if len(rows) > len(best):
+            best = rows
+        if len(best) >= 18:
+            break
+    return best
+
+
+def _collect_watcha_once(browser) -> list[dict]:
     ctx = browser.new_context(
         user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/121 Safari/537.36",
         viewport={"width": 1440, "height": 900},
@@ -187,8 +215,8 @@ def collect_watcha_native(browser) -> list[dict]:
         page.wait_for_timeout(3000)
         # 섹션 제목 등장할 때까지 천천히 스크롤 (lazy load 유도)
         hit = False
-        for i in range(25):
-            page.evaluate(f"window.scrollTo(0, {i*600})")
+        for i in range(35):
+            page.evaluate(f"window.scrollTo(0, {i*500})")
             page.wait_for_timeout(600)
             found = page.evaluate("""() => {
                 const els = Array.from(document.querySelectorAll('h1,h2,h3,h4,div,span'));
@@ -200,23 +228,36 @@ def collect_watcha_native(browser) -> list[dict]:
         if not hit:
             print("[왓챠 native] '왓챠 TOP 20' 섹션 못 찾음", file=sys.stderr)
             return rows
+        # 섹션 뷰포트에 맞추고 모든 아이템 alt/innerText 로드될 때까지 충분히 대기
+        page.evaluate("""() => {
+            const els = Array.from(document.querySelectorAll('h1,h2,h3,h4,div,span'));
+            const t = els.find(e => (e.innerText||'').trim() === '왓챠 TOP 20');
+            if (t) t.scrollIntoView({behavior:'instant', block:'center'});
+        }""")
+        page.wait_for_timeout(3500)
         items = page.evaluate("""() => {
             const els = Array.from(document.querySelectorAll('h1,h2,h3,h4,div,span'));
             const titleEl = els.find(e => (e.innerText||'').trim() === '왓챠 TOP 20');
             if (!titleEl) return [];
+            const pick = (c) => Array.from(c.querySelectorAll('a[href*="/contents/"]'))
+                .slice(0, 22)
+                .map((a, i) => {
+                    const img = a.querySelector('img[alt]');
+                    const alt = img ? img.getAttribute('alt') : '';
+                    const txt = (a.innerText || '').replace(/\\s+/g, ' ').trim();
+                    // alt 비어 있어도 innerText로 제목 확보 (lazy load 우회)
+                    return { idx: i + 1, href: a.getAttribute('href'), alt: alt || txt };
+                });
             let c = titleEl.parentElement;
             for (let d=0; d<15 && c; d++) {
                 const links = c.querySelectorAll('a[href*="/contents/"]');
-                if (links.length >= 5) {
-                    return Array.from(links).slice(0,30).map((a,i) => {
-                        const img = a.querySelector('img[alt]');
-                        return {
-                            idx: i+1,
-                            href: a.getAttribute('href'),
-                            alt: img ? img.getAttribute('alt') : null,
-                        };
-                    });
-                }
+                if (links.length >= 18) return pick(c);
+                c = c.parentElement;
+            }
+            c = titleEl.parentElement;
+            for (let d=0; d<15 && c; d++) {
+                const links = c.querySelectorAll('a[href*="/contents/"]');
+                if (links.length >= 10) return pick(c);
                 c = c.parentElement;
             }
             return [];
@@ -356,21 +397,97 @@ def _extract_infolist(page) -> dict:
 #   이 포맷은 영화 카드 안에만 있어서 뉴스·블로그에 섞이지 않음.
 _NAVER_CARD_AUDI_RE = re.compile(r"관객수\s*[\|｜\n]+\s*([\d,\.]+)\s*(만|억)?\s*명")
 
+# variant(버전) 키워드 — 제목엔 없는데 결과 페이지 상단에 나오면 다른 판본
+_VARIANT_KW = ["인터내셔널", "감독판", "확장판", "리마스터링", "재편집", "무삭제"]
+
 
 def _find_audi_movie_card(body: str) -> int | None:
-    """네이버 영화 카드의 '관객수 | XX만명' 필드에서만 관객수 추출."""
     m = _NAVER_CARD_AUDI_RE.search(body)
     if m:
         return _parse_audi(m)
     return None
 
 
-def _search_naver_movie(page, title: str, year: str) -> dict:
+def _is_variant_result(body: str, title: str) -> bool:
+    title_has = any(kw in title for kw in _VARIANT_KW)
+    head = body[:400]  # 상단(페이지 제목 영역)에서 검사
+    page_has = any(kw in head for kw in _VARIANT_KW)
+    return page_has and not title_has
+
+
+def _follow_pkid_detail_for_audi(page, search_page_url: str, title: str) -> int | None:
+    """검색 결과의 pkid=68 영화 상세 링크로 이동해 관객수 재시도.
+
+    "파과 인터내셔널 컷" 같은 variant 페이지로 빠지지 않도록, 이동 후 상단
+    400자에 variant 키워드가 있고 원제목엔 없으면 건너뛰고 다음 후보로.
+    """
+    try:
+        hrefs = page.evaluate(
+            """() => Array.from(document.querySelectorAll('a[href*="pkid=68"]'))
+                .map(a => a.getAttribute('href'))
+                .filter((h,i,arr) => arr.indexOf(h) === i)
+                .slice(0, 5)"""
+        )
+    except Exception:  # noqa: BLE001
+        hrefs = []
+    for href in hrefs:
+        detail = urllib.parse.urljoin(search_page_url, href)
+        try:
+            page.goto(detail, timeout=15000)
+            page.wait_for_timeout(2500)
+            page.evaluate("window.scrollBy(0, 400)")
+            page.wait_for_timeout(700)
+            body = page.inner_text("body")
+        except Exception:  # noqa: BLE001
+            continue
+        if _is_variant_result(body, title):
+            continue
+        v = _find_audi_movie_card(body)
+        if v is not None:
+            return v
+    return None
+
+
+def _search_naver_movie(page, title: str, year: str, override_url: str | None = None) -> dict:
+    best = {"openDt": None, "audiCnt": None, "director": "", "genres": ""}
+
+    # override URL 우선 — 일반 검색으로 원작 카드를 못 찾는 영화 대응
+    if override_url:
+        try:
+            page.goto(override_url, timeout=15000)
+            page.wait_for_timeout(2500)
+            page.evaluate("window.scrollBy(0, 400)")
+            page.wait_for_timeout(700)
+            body = page.inner_text("body")
+            info_il = _extract_infolist(page)
+            d = info_il.get("감독") or info_il.get("연출") or ""
+            if d:
+                best["director"] = d.strip().split(",")[0].strip()
+            od = info_il.get("개봉일") or info_il.get("개봉") or ""
+            m = re.search(r"(\d{4})[년\-\.\s]+(\d{1,2})[월\-\.\s]+(\d{1,2})", od)
+            if m:
+                best["openDt"] = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+            else:
+                bm = _NAVER_OPEN_RE.search(body)
+                if bm:
+                    best["openDt"] = f"{bm.group(1)}-{int(bm.group(2)):02d}-{int(bm.group(3)):02d}"
+            g = info_il.get("장르") or ""
+            if not g:
+                gm = _NAVER_GENRE_LOOSE_RE.search(body)
+                if gm:
+                    g = gm.group(1).strip()
+            if g:
+                best["genres"] = _split_genres(g, max_n=2)
+            best["audiCnt"] = _find_audi_movie_card(body)
+        except Exception:  # noqa: BLE001
+            pass
+        if all([best["openDt"], best["audiCnt"], best["director"], best["genres"]]):
+            return best
+
     queries = []
     if year:
         queries.extend([f"{title} {year} 영화", f"영화 {title} {year}"])
     queries.extend([f"{title} 영화", f"영화 {title}"])
-    best = {"openDt": None, "audiCnt": None, "director": "", "genres": ""}
     for q in queries:
         url = f"https://search.naver.com/search.naver?query={urllib.parse.quote(q)}"
         try:
@@ -411,9 +528,15 @@ def _search_naver_movie(page, title: str, year: str) -> dict:
             if g:
                 best["genres"] = _split_genres(g, max_n=2)
 
-        # 관객수: 네이버 영화 카드의 "관객수 | XX만명" 필드에서만 추출
+        # 관객수: 영화 카드에서 추출하되 variant 페이지(인터내셔널 컷 등)면 버림
         if best["audiCnt"] is None:
-            best["audiCnt"] = _find_audi_movie_card(body)
+            card_audi = _find_audi_movie_card(body)
+            if card_audi is not None and not _is_variant_result(body, title):
+                best["audiCnt"] = card_audi
+
+        # 카드 매치 실패하거나 variant여서 버린 경우 pkid 상세 링크 fallback
+        if best["audiCnt"] is None:
+            best["audiCnt"] = _follow_pkid_detail_for_audi(page, url, title)
 
         if all([best["openDt"], best["audiCnt"], best["director"], best["genres"]]):
             break
@@ -464,6 +587,7 @@ def collect_movies_from_naver(browser, ott_df: pd.DataFrame) -> pd.DataFrame:
     if ott_df.empty:
         return pd.DataFrame(columns=["title", "year", "openDt", "audiCnt", "director", "genres"])
     movies = ott_df[ott_df["kind"] == "영화"][["title", "year"]].drop_duplicates().reset_index(drop=True)
+    overrides = _load_naver_url_overrides()
     ctx = browser.new_context(
         user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
         viewport={"width": 1280, "height": 900},
@@ -473,7 +597,7 @@ def collect_movies_from_naver(browser, ott_df: pd.DataFrame) -> pd.DataFrame:
     for i, r in movies.iterrows():
         title = str(r["title"])
         year = str(r.get("year") or "").strip()
-        info = _search_naver_movie(page, title, year)
+        info = _search_naver_movie(page, title, year, override_url=overrides.get(title))
         rows.append({
             "title": title, "year": year,
             "openDt": info["openDt"], "audiCnt": info["audiCnt"],

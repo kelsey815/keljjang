@@ -1,15 +1,18 @@
 platform,rank,title,content_type,year,href,source,kind,platform_rank
-왓챠,1,히티드 라이벌리 시즌 1,시리즈,,https://watcha.com/contents/tEKzVJV,watcha_home,시리즈,1
-왓챠,2,바람,영화,,https://watcha.com/contents/mLOP7lW,watcha_home,영화,2
-왓챠,3,힘내라! 나카무라 군!!,시리즈,,https://watcha.com/contents/tPDOK7r,watcha_home,시리즈,3
-왓챠,4,온화한 귀족의 휴가의 권장,시리즈,,https://watcha.com/contents/tEKzVBy,watcha_home,시리즈,4
-왓챠,5,성하체통: 체통 파괴 로맨스,시리즈,,https://watcha.com/contents/tPj16b8,watcha_home,시리즈,5
-왓챠,6,이세계 유유자적 농가,시리즈,,https://watcha.com/contents/tlObd36,watcha_home,시리즈,6
-왓챠,7,정반대의 너와 나,시리즈,,https://watcha.com/contents/tEqZAj1,watcha_home,시리즈,7
-왓챠,8,무사태평 영주의 즐거운 영지 방어 ~생산계 마법으로 이름 없는 마을을 최강의 성채 도시로~,시리즈,,https://watcha.com/contents/tRB6O3q,watcha_home,시리즈,8
-왓챠,9,아름다운 초저녁달,시리즈,,https://watcha.com/contents/tPJZqz3,watcha_home,시리즈,9
-왓챠,10,전생했더니 슬라임이었던 건에 대하여,시리즈,,https://watcha.com/contents/tPd3aLN,watcha_home,시리즈,10
-왓챠,11,황천의 츠가이,시리즈,,https://watcha.com/contents/tP8aDzd,watcha_home,시리즈,11
+왓챠,7,영안여몽: 다시 쓰는 꿈,시리즈,,https://watcha.com/contents/tEgMDL4,watcha_home,시리즈,1
+왓챠,8,묵우운간,시리즈,,https://watcha.com/contents/tRaDvGb,watcha_home,시리즈,2
+왓챠,9,성하체통: 체통따위는 없다,시리즈,,https://watcha.com/contents/tE6Yaoq,watcha_home,시리즈,3
+왓챠,10,아름다운 초저녁달,시리즈,,https://watcha.com/contents/tPJZqz3,watcha_home,시리즈,4
+왓챠,11,포풍추영,영화,,https://watcha.com/contents/mOkLa3w,watcha_home,영화,5
+왓챠,12,아름다운 그대에게,시리즈,,https://watcha.com/contents/tR5K2o4,watcha_home,시리즈,6
+왓챠,13,금월여가,시리즈,,https://watcha.com/contents/tPDOK67,watcha_home,시리즈,7
+왓챠,14,너무 야한 후카미군,시리즈,,https://watcha.com/contents/tPd3rdN,watcha_home,시리즈,8
+왓챠,15,아적린거장부대 : 내 이웃은 꼬맹이,시리즈,,https://watcha.com/contents/tR5KZaL,watcha_home,시리즈,9
+왓챠,16,허아요안,시리즈,,https://watcha.com/contents/tR5K25a,watcha_home,시리즈,10
+왓챠,17,운지우,시리즈,,https://watcha.com/contents/tlAnxvM,watcha_home,시리즈,11
+왓챠,18,대몽귀리: 꿈에서 깨어 그대를 만나네,시리즈,,https://watcha.com/contents/tRB6QmD,watcha_home,시리즈,12
+왓챠,19,템테이션 아일랜드 시즌 1,시리즈,,https://watcha.com/contents/tR7ZrLn,watcha_home,시리즈,13
+왓챠,20,더 퍼스트 타임,영화,,https://watcha.com/contents/mdjVQad,watcha_home,영화,14
 웨이브,1,바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000378,wavve_api,영화,1
 웨이브,1,나는 SOLO,시리즈,,https://www.wavve.com/player/vod?programid=S03_22000012183,wavve_api,시리즈,1
 웨이브,2,형,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000053,wavve_api,영화,3

@@ -76,13 +76,16 @@ def _format_audi(n) -> str:
         n = int(n)
     except (ValueError, TypeError):
         return ""
+    if n <= 0:
+        return ""
     if n >= 100_000_000:
         v = n / 100_000_000
-        return f"{v:.1f}억" if v < 10 else f"{int(v)}억"
-    if n >= 10_000:
-        v = n / 10_000
-        return f"{int(round(v))}만"
-    return f"{n:,}"
+        return f"{v:.1f}억" if v < 10 else f"{int(v):,}억"
+    v = n / 10_000
+    if v >= 10:
+        return f"{int(round(v)):,}만"
+    # 10만 미만: 소수점 한 자리 ("0.4만", "4.5만")
+    return f"{v:.1f}만"
 
 
 def _format_opendt(row) -> str:
