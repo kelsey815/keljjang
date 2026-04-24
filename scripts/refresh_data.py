@@ -351,6 +351,20 @@ def _extract_infolist(page) -> dict:
     return {}
 
 
+# 네이버 영화 카드 본체의 키-값 페어 포맷
+#   예: "개봉 | 2015.03.05. | 평점 | 6.39 | 관객수 | 47만명"
+#   이 포맷은 영화 카드 안에만 있어서 뉴스·블로그에 섞이지 않음.
+_NAVER_CARD_AUDI_RE = re.compile(r"관객수\s*[\|｜\n]+\s*([\d,\.]+)\s*(만|억)?\s*명")
+
+
+def _find_audi_movie_card(body: str) -> int | None:
+    """네이버 영화 카드의 '관객수 | XX만명' 필드에서만 관객수 추출."""
+    m = _NAVER_CARD_AUDI_RE.search(body)
+    if m:
+        return _parse_audi(m)
+    return None
+
+
 def _search_naver_movie(page, title: str, year: str) -> dict:
     queries = []
     if year:
@@ -361,6 +375,9 @@ def _search_naver_movie(page, title: str, year: str) -> dict:
         url = f"https://search.naver.com/search.naver?query={urllib.parse.quote(q)}"
         try:
             page.goto(url, timeout=15000)
+            # 네이버 영화 카드는 lazy render라 충분히 대기 + 스크롤 필요
+            page.wait_for_timeout(2500)
+            page.evaluate("window.scrollBy(0, 400)")
             page.wait_for_timeout(800)
         except Exception:  # noqa: BLE001
             continue
@@ -370,13 +387,11 @@ def _search_naver_movie(page, title: str, year: str) -> dict:
         except Exception:  # noqa: BLE001
             body = ""
 
-        # 감독: 인포리스트 우선
         if not best["director"]:
             d = info.get("감독") or info.get("연출") or ""
             if d:
                 best["director"] = d.strip().split(",")[0].strip()
 
-        # 개봉일
         if best["openDt"] is None:
             od = info.get("개봉일") or info.get("개봉") or ""
             m = re.search(r"(\d{4})[년\-\.\s]+(\d{1,2})[월\-\.\s]+(\d{1,2})", od)
@@ -387,7 +402,6 @@ def _search_naver_movie(page, title: str, year: str) -> dict:
                 if bm:
                     best["openDt"] = f"{bm.group(1)}-{int(bm.group(2)):02d}-{int(bm.group(3)):02d}"
 
-        # 장르
         if not best["genres"]:
             g = info.get("장르") or ""
             if not g:
@@ -397,14 +411,13 @@ def _search_naver_movie(page, title: str, year: str) -> dict:
             if g:
                 best["genres"] = _split_genres(g, max_n=2)
 
-        # 관객수 (인포리스트에 없음 — 본문 텍스트에서)
+        # 관객수: 네이버 영화 카드의 "관객수 | XX만명" 필드에서만 추출
         if best["audiCnt"] is None:
-            am = _NAVER_AUDI_RE.search(body)
-            if am:
-                best["audiCnt"] = _parse_audi(am)
+            best["audiCnt"] = _find_audi_movie_card(body)
 
         if all([best["openDt"], best["audiCnt"], best["director"], best["genres"]]):
             break
+
     return best
 
 

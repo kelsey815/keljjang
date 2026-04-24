@@ -2,14 +2,14 @@ platform,rank,title,content_type,year,href,source,kind,platform_rank
 왓챠,1,히티드 라이벌리 시즌 1,시리즈,,https://watcha.com/contents/tEKzVJV,watcha_home,시리즈,1
 왓챠,2,바람,영화,,https://watcha.com/contents/mLOP7lW,watcha_home,영화,2
 왓챠,3,힘내라! 나카무라 군!!,시리즈,,https://watcha.com/contents/tPDOK7r,watcha_home,시리즈,3
-왓챠,4,아름다운 초저녁달,시리즈,,https://watcha.com/contents/tPJZqz3,watcha_home,시리즈,4
-왓챠,5,온화한 귀족의 휴가의 권장,시리즈,,https://watcha.com/contents/tEKzVBy,watcha_home,시리즈,5
-왓챠,6,살의의 도정,시리즈,,https://watcha.com/contents/tRN7BY9,watcha_home,시리즈,6
-왓챠,7,퍼펙트 블루,영화,,https://watcha.com/contents/mdjaozO,watcha_home,영화,7
-왓챠,8,성하체통: 체통 파괴 로맨스,시리즈,,https://watcha.com/contents/tPj16b8,watcha_home,시리즈,8
-왓챠,9,이하범상,시리즈,,https://watcha.com/contents/tlAnrQY,watcha_home,시리즈,9
-왓챠,10,정반대의 너와 나,시리즈,,https://watcha.com/contents/tEqZAj1,watcha_home,시리즈,10
-왓챠,11,"용사 파티에 귀여운 애가 있어서, 고백해봤다.",시리즈,,https://watcha.com/contents/tRaDnyw,watcha_home,시리즈,11
+왓챠,4,온화한 귀족의 휴가의 권장,시리즈,,https://watcha.com/contents/tEKzVBy,watcha_home,시리즈,4
+왓챠,5,성하체통: 체통 파괴 로맨스,시리즈,,https://watcha.com/contents/tPj16b8,watcha_home,시리즈,5
+왓챠,6,이세계 유유자적 농가,시리즈,,https://watcha.com/contents/tlObd36,watcha_home,시리즈,6
+왓챠,7,정반대의 너와 나,시리즈,,https://watcha.com/contents/tEqZAj1,watcha_home,시리즈,7
+왓챠,8,무사태평 영주의 즐거운 영지 방어 ~생산계 마법으로 이름 없는 마을을 최강의 성채 도시로~,시리즈,,https://watcha.com/contents/tRB6O3q,watcha_home,시리즈,8
+왓챠,9,아름다운 초저녁달,시리즈,,https://watcha.com/contents/tPJZqz3,watcha_home,시리즈,9
+왓챠,10,전생했더니 슬라임이었던 건에 대하여,시리즈,,https://watcha.com/contents/tPd3aLN,watcha_home,시리즈,10
+왓챠,11,황천의 츠가이,시리즈,,https://watcha.com/contents/tP8aDzd,watcha_home,시리즈,11
 웨이브,1,바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000378,wavve_api,영화,1
 웨이브,1,나는 SOLO,시리즈,,https://www.wavve.com/player/vod?programid=S03_22000012183,wavve_api,시리즈,1
 웨이브,2,형,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000053,wavve_api,영화,3
@@ -30,23 +30,23 @@ platform,rank,title,content_type,year,href,source,kind,platform_rank
 웨이브,9,유 퀴즈 온 더 블럭,시리즈,,https://www.wavve.com/player/vod?programid=C3519_C35000000069,wavve_api,시리즈,17
 웨이브,10,타워,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000050,wavve_api,영화,19
 웨이브,10,나 혼자 산다,시리즈,,https://www.wavve.com/player/vod?programid=M_1002831100000100000,wavve_api,시리즈,19
-웨이브,11,달마야 놀자,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001129,wavve_api,영화,21
+웨이브,11,[극장판] 명탐정 코난: 세기말의 마술사,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001090,wavve_api,영화,21
 웨이브,11,라디오스타,시리즈,,https://www.wavve.com/player/vod?programid=M_1000794100000100000,wavve_api,시리즈,21
-웨이브,12,[극장판] 명탐정 코난: 세기말의 마술사,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001090,wavve_api,영화,23
+웨이브,12,달마야 놀자,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001129,wavve_api,영화,23
 웨이브,12,내 새끼의 연애2,시리즈,,https://www.wavve.com/player/vod?programid=C3520_C35000000001,wavve_api,시리즈,23
 웨이브,13,포풍추영,영화,,https://www.wavve.com/player/movie?contentid=GMV_C901_SG0000193480,wavve_api,영화,25
 웨이브,13,놀면 뭐하니?,시리즈,,https://www.wavve.com/player/vod?programid=M_1004711100000100000,wavve_api,시리즈,25
 웨이브,14,[극장판] 명탐정 코난: 척안의 잔상,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001246,wavve_api,영화,27
 웨이브,14,리버스,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000188,wavve_api,시리즈,27
-웨이브,15,연가시,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000047,wavve_api,영화,29
+웨이브,15,순수의 시대,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000199,wavve_api,영화,29
 웨이브,15,신랑수업2,시리즈,,https://www.wavve.com/player/vod?programid=C2501_WPG2260022D,wavve_api,시리즈,29
-웨이브,16,순수의 시대,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000199,wavve_api,영화,31
+웨이브,16,연가시,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000047,wavve_api,영화,31
 웨이브,16,심우면 연리리,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0365,wavve_api,시리즈,31
 웨이브,17,눈에 갇힌 외딴 산장에서,영화,,https://www.wavve.com/player/movie?contentid=GMV_MC01_MC000000237,wavve_api,영화,33
 웨이브,17,아빠하고 나하고,시리즈,,https://www.wavve.com/player/vod?programid=CS1_C202300190,wavve_api,시리즈,33
-웨이브,18,덕혜옹주,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000056,wavve_api,영화,35
+웨이브,18,감기,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000075,wavve_api,영화,35
 웨이브,18,기쁜 우리 좋은 날,시리즈,,https://www.wavve.com/player/vod?programid=K01_T2026-0027,wavve_api,시리즈,35
-웨이브,19,감기,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000075,wavve_api,영화,37
+웨이브,19,덕혜옹주,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000056,wavve_api,영화,37
 웨이브,19,스모킹 건,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2023-0067,wavve_api,시리즈,37
 웨이브,20,너의 이름은.,영화,,https://www.wavve.com/player/movie?contentid=GMV_MC01_MC000000036,wavve_api,영화,39
 웨이브,20,베팅 온 팩트,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000187,wavve_api,시리즈,39
