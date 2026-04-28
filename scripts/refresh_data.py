@@ -555,6 +555,9 @@ def _search_naver_series(page, title: str, year: str) -> dict:
         url = f"https://search.naver.com/search.naver?query={urllib.parse.quote(q)}"
         try:
             page.goto(url, timeout=15000)
+            # 인포리스트는 lazy render — 영화 함수와 동일하게 충분히 대기 + 스크롤
+            page.wait_for_timeout(2500)
+            page.evaluate("window.scrollBy(0, 400)")
             page.wait_for_timeout(800)
         except Exception:  # noqa: BLE001
             continue
