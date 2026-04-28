@@ -1,58 +1,57 @@
 platform,rank,title,content_type,year,href,source,kind,platform_rank
-왓챠,7,영안여몽: 다시 쓰는 꿈,시리즈,,https://watcha.com/contents/tEgMDL4,watcha_home,시리즈,1
-왓챠,8,묵우운간,시리즈,,https://watcha.com/contents/tRaDvGb,watcha_home,시리즈,2
-왓챠,9,성하체통: 체통따위는 없다,시리즈,,https://watcha.com/contents/tE6Yaoq,watcha_home,시리즈,3
-왓챠,10,아름다운 초저녁달,시리즈,,https://watcha.com/contents/tPJZqz3,watcha_home,시리즈,4
-왓챠,11,포풍추영,영화,,https://watcha.com/contents/mOkLa3w,watcha_home,영화,5
-왓챠,12,아름다운 그대에게,시리즈,,https://watcha.com/contents/tR5K2o4,watcha_home,시리즈,6
-왓챠,13,금월여가,시리즈,,https://watcha.com/contents/tPDOK67,watcha_home,시리즈,7
-왓챠,14,너무 야한 후카미군,시리즈,,https://watcha.com/contents/tPd3rdN,watcha_home,시리즈,8
-왓챠,15,아적린거장부대 : 내 이웃은 꼬맹이,시리즈,,https://watcha.com/contents/tR5KZaL,watcha_home,시리즈,9
-왓챠,16,허아요안,시리즈,,https://watcha.com/contents/tR5K25a,watcha_home,시리즈,10
-왓챠,17,운지우,시리즈,,https://watcha.com/contents/tlAnxvM,watcha_home,시리즈,11
-왓챠,18,대몽귀리: 꿈에서 깨어 그대를 만나네,시리즈,,https://watcha.com/contents/tRB6QmD,watcha_home,시리즈,12
-왓챠,19,템테이션 아일랜드 시즌 1,시리즈,,https://watcha.com/contents/tR7ZrLn,watcha_home,시리즈,13
-왓챠,20,더 퍼스트 타임,영화,,https://watcha.com/contents/mdjVQad,watcha_home,영화,14
-웨이브,1,바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000378,wavve_api,영화,1
-웨이브,1,나는 SOLO,시리즈,,https://www.wavve.com/player/vod?programid=S03_22000012183,wavve_api,시리즈,1
-웨이브,2,형,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000053,wavve_api,영화,3
-웨이브,2,첫 번째 남자,시리즈,,https://www.wavve.com/player/vod?programid=M_T60528G,wavve_api,시리즈,3
-웨이브,3,[극장판] 명탐정 코난: 세기말의 마술사 - 4K 리마스터링,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001256,wavve_api,영화,5
-웨이브,3,"나는 SOLO, 그 후 사랑은 계속된다",시리즈,,https://www.wavve.com/player/vod?programid=S03_22000012939,wavve_api,시리즈,5
-웨이브,4,[감독판] 바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000215,wavve_api,영화,7
-웨이브,4,21세기 대군부인,시리즈,,https://www.wavve.com/player/vod?programid=M_T60518G,wavve_api,시리즈,7
+왓챠,8,좋좋소,시리즈,,https://watcha.com/contents/tR4JrKo,watcha_home,시리즈,1
+왓챠,9,키딩 시즌 1,시리즈,,https://watcha.com/contents/tEKYWbV,watcha_home,시리즈,2
+왓챠,10,언프레임드,시리즈,,https://watcha.com/contents/tlLr4Ae,watcha_home,시리즈,3
+왓챠,11,성하체통: 체통 파괴 로맨스,시리즈,,https://watcha.com/contents/tPj16b8,watcha_home,시리즈,4
+왓챠,12,열두 통의 편지,시리즈,,https://watcha.com/contents/tRWmj26,watcha_home,시리즈,5
+왓챠,13,어글리 시스터,영화,,https://watcha.com/contents/mOkLQGz,watcha_home,영화,6
+왓챠,14,애니: 널 사랑해,시리즈,,https://watcha.com/contents/tPd3rey,watcha_home,시리즈,7
+왓챠,15,덱스터: 뉴 블러드,시리즈,,https://watcha.com/contents/tR4Jqbm,watcha_home,시리즈,8
+왓챠,16,포커 페이스,시리즈,,https://watcha.com/contents/tE6YLBr,watcha_home,시리즈,9
+왓챠,17,입청운,시리즈,,https://watcha.com/contents/tR2eJwe,watcha_home,시리즈,10
+왓챠,18,빨간마스크 KF94,영화,,https://watcha.com/contents/mOopNrP,watcha_home,영화,11
+왓챠,19,스킨스 시즌 1,시리즈,,https://watcha.com/contents/tR2BjQR,watcha_home,시리즈,12
+왓챠,20,대몽귀리: 꿈에서 깨어 그대를 만나네,시리즈,,https://watcha.com/contents/tRB6QmD,watcha_home,시리즈,13
+웨이브,1,[극장판] 명탐정 코난: 세기말의 마술사 - 4K 리마스터링,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001256,wavve_api,영화,1
+웨이브,1,21세기 대군부인,시리즈,,https://www.wavve.com/player/vod?programid=M_T60518G,wavve_api,시리즈,1
+웨이브,2,바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000378,wavve_api,영화,3
+웨이브,2,은밀한 감사,시리즈,,https://www.wavve.com/player/vod?programid=C3519_C35000000082,wavve_api,시리즈,3
+웨이브,3,[감독판] 바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000215,wavve_api,영화,5
+웨이브,3,놀면 뭐하니?,시리즈,,https://www.wavve.com/player/vod?programid=M_1004711100000100000,wavve_api,시리즈,5
+웨이브,4,용감한 시민,영화,,https://www.wavve.com/player/movie?contentid=GMV_WV01_WV000000070,wavve_api,영화,7
+웨이브,4,나 혼자 산다,시리즈,,https://www.wavve.com/player/vod?programid=M_1002831100000100000,wavve_api,시리즈,7
 웨이브,5,젠틀맨,영화,,https://www.wavve.com/player/movie?contentid=GMV_WV01_WV000000053,wavve_api,영화,9
-웨이브,5,이혼숙려캠프,시리즈,,https://www.wavve.com/player/vod?programid=J3801_J38000000002,wavve_api,시리즈,9
-웨이브,6,도굴,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000001,wavve_api,영화,11
-웨이브,6,붉은 진주,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0500,wavve_api,시리즈,11
-웨이브,7,하트맨,영화,,https://www.wavve.com/player/movie?contentid=GMV_CI01_LE0000011302,wavve_api,영화,13
-웨이브,7,무명전설,시리즈,,https://www.wavve.com/player/vod?programid=C2401_PR999,wavve_api,시리즈,13
-웨이브,8,용감한 시민,영화,,https://www.wavve.com/player/movie?contentid=GMV_WV01_WV000000070,wavve_api,영화,15
-웨이브,8,실화탐사대,시리즈,,https://www.wavve.com/player/vod?programid=M_1003736100000100000,wavve_api,시리즈,15
-웨이브,9,태풍,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000051,wavve_api,영화,17
-웨이브,9,유 퀴즈 온 더 블럭,시리즈,,https://www.wavve.com/player/vod?programid=C3519_C35000000069,wavve_api,시리즈,17
-웨이브,10,타워,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000050,wavve_api,영화,19
-웨이브,10,나 혼자 산다,시리즈,,https://www.wavve.com/player/vod?programid=M_1002831100000100000,wavve_api,시리즈,19
-웨이브,11,[극장판] 명탐정 코난: 세기말의 마술사,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001090,wavve_api,영화,21
-웨이브,11,라디오스타,시리즈,,https://www.wavve.com/player/vod?programid=M_1000794100000100000,wavve_api,시리즈,21
-웨이브,12,달마야 놀자,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001129,wavve_api,영화,23
-웨이브,12,내 새끼의 연애2,시리즈,,https://www.wavve.com/player/vod?programid=C3520_C35000000001,wavve_api,시리즈,23
-웨이브,13,포풍추영,영화,,https://www.wavve.com/player/movie?contentid=GMV_C901_SG0000193480,wavve_api,영화,25
-웨이브,13,놀면 뭐하니?,시리즈,,https://www.wavve.com/player/vod?programid=M_1004711100000100000,wavve_api,시리즈,25
-웨이브,14,[극장판] 명탐정 코난: 척안의 잔상,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001246,wavve_api,영화,27
-웨이브,14,리버스,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000188,wavve_api,시리즈,27
+웨이브,5,첫 번째 남자,시리즈,,https://www.wavve.com/player/vod?programid=M_T60528G,wavve_api,시리즈,9
+웨이브,6,포풍추영,영화,,https://www.wavve.com/player/movie?contentid=GMV_C901_SG0000193480,wavve_api,영화,11
+웨이브,6,전지적 참견 시점,시리즈,,https://www.wavve.com/player/vod?programid=M_1003594100000100000,wavve_api,시리즈,11
+웨이브,7,도굴,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000001,wavve_api,영화,13
+웨이브,7,사랑을 처방해 드립니다,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0419,wavve_api,시리즈,13
+웨이브,8,[극장판] 명탐정 코난: 척안의 잔상,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001246,wavve_api,영화,15
+웨이브,8,소라와 진경,시리즈,,https://www.wavve.com/player/vod?programid=M_T70734G,wavve_api,시리즈,15
+웨이브,9,극한직업,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000007,wavve_api,영화,17
+웨이브,9,1박2일 시즌4,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2005-0230_1,wavve_api,시리즈,17
+웨이브,10,감격시대 더 무비,영화,,https://www.wavve.com/player/movie?contentid=GMV_CK01_TCO000013317,wavve_api,영화,19
+웨이브,10,냉장고를 부탁해 since2014,시리즈,,https://www.wavve.com/player/vod?programid=J3801_J38000000003,wavve_api,시리즈,19
+웨이브,11,하트맨,영화,,https://www.wavve.com/player/movie?contentid=GMV_CI01_LE0000011302,wavve_api,영화,21
+웨이브,11,붉은 진주,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0500,wavve_api,시리즈,21
+웨이브,12,형,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000053,wavve_api,영화,23
+웨이브,12,베팅 온 팩트,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000187,wavve_api,시리즈,23
+웨이브,13,너의 이름은.,영화,,https://www.wavve.com/player/movie?contentid=GMV_MC01_MC000000036,wavve_api,영화,25
+웨이브,13,리버스,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000188,wavve_api,시리즈,25
+웨이브,14,[극장판] 명탐정 코난: 세기말의 마술사,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001090,wavve_api,영화,27
+웨이브,14,우리동네 야구대장,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2026-0051,wavve_api,시리즈,27
 웨이브,15,순수의 시대,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000199,wavve_api,영화,29
-웨이브,15,신랑수업2,시리즈,,https://www.wavve.com/player/vod?programid=C2501_WPG2260022D,wavve_api,시리즈,29
-웨이브,16,연가시,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000047,wavve_api,영화,31
-웨이브,16,심우면 연리리,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0365,wavve_api,시리즈,31
-웨이브,17,눈에 갇힌 외딴 산장에서,영화,,https://www.wavve.com/player/movie?contentid=GMV_MC01_MC000000237,wavve_api,영화,33
-웨이브,17,아빠하고 나하고,시리즈,,https://www.wavve.com/player/vod?programid=CS1_C202300190,wavve_api,시리즈,33
-웨이브,18,감기,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000075,wavve_api,영화,35
-웨이브,18,기쁜 우리 좋은 날,시리즈,,https://www.wavve.com/player/vod?programid=K01_T2026-0027,wavve_api,시리즈,35
-웨이브,19,덕혜옹주,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000056,wavve_api,영화,37
-웨이브,19,스모킹 건,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2023-0067,wavve_api,시리즈,37
-웨이브,20,너의 이름은.,영화,,https://www.wavve.com/player/movie?contentid=GMV_MC01_MC000000036,wavve_api,영화,39
-웨이브,20,베팅 온 팩트,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000187,wavve_api,시리즈,39
+웨이브,15,용감한 형사들 5,시리즈,,https://www.wavve.com/player/vod?programid=C5701_C57000000080,wavve_api,시리즈,29
+웨이브,16,스파이더맨: 노 웨이 홈,영화,,https://www.wavve.com/player/movie?contentid=GMV_CF01_SY0000011741,wavve_api,영화,31
+웨이브,16,탐정들의 영업비밀,시리즈,,https://www.wavve.com/player/vod?programid=C2501_WPG2230354D,wavve_api,시리즈,31
+웨이브,17,탑건: 매버릭,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011377,wavve_api,영화,33
+웨이브,17,오은영 리포트 시즌2: 결혼 지옥,시리즈,,https://www.wavve.com/player/vod?programid=M_T40915S,wavve_api,시리즈,33
+웨이브,18,[극장판] 명탐정 코난: 시한장치의 마천루,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001092,wavve_api,영화,35
+웨이브,18,히든아이,시리즈,,https://www.wavve.com/player/vod?programid=M03_PA000793,wavve_api,시리즈,35
+웨이브,19,트럭,영화,,https://www.wavve.com/player/movie?contentid=GMV_SU01_SU0000000019,wavve_api,영화,37
+웨이브,19,살림하는 남자들,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2016-0651,wavve_api,시리즈,37
+웨이브,20,방탄승,영화,,https://www.wavve.com/player/movie?contentid=GMV_CX01_CX0000011876,wavve_api,영화,39
+웨이브,20,이혼숙려캠프,시리즈,,https://www.wavve.com/player/vod?programid=J3801_J38000000002,wavve_api,시리즈,39
 쿠팡플레이,1,SNL KOREA,시리즈,,,coupang_manual,시리즈,1
 쿠팡플레이,2,닥터신,시리즈,,,coupang_manual,시리즈,2
 쿠팡플레이,3,나는 SOLO,시리즈,,,coupang_manual,시리즈,3
@@ -73,35 +72,27 @@ platform,rank,title,content_type,year,href,source,kind,platform_rank
 쿠팡플레이,18,왕좌의 게임,시리즈,,,coupang_manual,시리즈,18
 쿠팡플레이,19,포풍추영,영화,,,coupang_manual,영화,19
 쿠팡플레이,20,동화지막 청불입니다 무삭제판,영화,,,coupang_manual,영화,20
-티빙,1,허수아비,드라마,2026,/title/151039,kinolights,시리즈,1
-티빙,11,구기동 프렌즈,예능,2026,/title/150858,kinolights,시리즈,2
-티빙,17,하트시그널5,예능,2026,/title/151625,kinolights,시리즈,3
-티빙,19,선재 업고 튀어,드라마,2024,/title/130294,kinolights,시리즈,4
-티빙,26,유미의 세포들 시즌 3,드라마,2026,/title/143430,kinolights,시리즈,5
-티빙,31,이토록 친밀한 배신자,드라마,2024,/title/134887,kinolights,시리즈,6
-티빙,33,순수의 시대,영화,2015,/title/5985,kinolights,영화,7
-티빙,34,바람,영화,2009,/title/10803,kinolights,영화,8
-티빙,36,유미의 세포들 시즌 2,드라마,2022,/title/102735,kinolights,시리즈,9
-티빙,37,대한민국에서 건물주 되는 법,드라마,2026,/title/150092,kinolights,시리즈,10
-티빙,44,백월범성,드라마,2025,/title/140762,kinolights,시리즈,11
-티빙,46,사람과 고기,영화,2025,/title/146409,kinolights,영화,12
-티빙,47,골드 디거,드라마,2019,/title/97022,kinolights,시리즈,13
-티빙,48,입청운,드라마,2025,/title/147654,kinolights,시리즈,14
-티빙,51,롱 베케이션,드라마,1996,/title/95738,kinolights,시리즈,15
-티빙,53,LTNS,드라마,2023,/title/121580,kinolights,시리즈,16
-티빙,54,영안여몽,드라마,2023,/title/130290,kinolights,시리즈,17
-티빙,55,앵도호박,드라마,2025,/title/144981,kinolights,시리즈,18
-티빙,60,연애기숙학교 돌싱N모솔,예능,2026,/title/151545,kinolights,시리즈,19
-티빙,61,도화년,드라마,2024,/title/138434,kinolights,시리즈,20
-티빙,69,창란결,드라마,2022,/title/112647,kinolights,시리즈,21
-티빙,71,운지우,드라마,2023,/title/126948,kinolights,시리즈,22
-티빙,73,춘화염,드라마,2024,/title/138605,kinolights,시리즈,23
-티빙,75,일소수가,드라마,2025,/title/147912,kinolights,시리즈,24
-티빙,76,하녀: 위험한 관계,영화,2021,/title/117824,kinolights,영화,25
-티빙,78,애니: 널 사랑해,드라마,2025,/title/141301,kinolights,시리즈,26
-티빙,81,은교,영화,2012,/title/9628,kinolights,영화,27
-티빙,82,유미의 세포들 시즌 1,드라마,2021,/title/97660,kinolights,시리즈,28
-티빙,87,주렴옥막,드라마,2024,/title/138628,kinolights,시리즈,29
-티빙,92,선태유수,드라마,2025,/title/141333,kinolights,시리즈,30
-티빙,95,간신,영화,2015,/title/13691,kinolights,영화,31
-티빙,98,허아요안,드라마,2025,/title/148963,kinolights,시리즈,32
+티빙,1,은밀한 감사,드라마,2026,/title/151219,kinolights,시리즈,1
+티빙,7,허수아비,드라마,2026,/title/151039,kinolights,시리즈,2
+티빙,20,바람,영화,2009,/title/10803,kinolights,영화,3
+티빙,21,구기동 프렌즈,예능,2026,/title/150858,kinolights,시리즈,4
+티빙,24,선재 업고 튀어,드라마,2024,/title/130294,kinolights,시리즈,5
+티빙,25,하트시그널5,예능,2026,/title/151625,kinolights,시리즈,6
+티빙,34,포풍추영,영화,2025,/title/146154,kinolights,영화,7
+티빙,43,순수의 시대,영화,2015,/title/5985,kinolights,영화,8
+티빙,51,브릭레이어,영화,2024,/title/125579,kinolights,영화,9
+티빙,56,이토록 친밀한 배신자,드라마,2024,/title/134887,kinolights,시리즈,10
+티빙,57,유미의 세포들 시즌 3,드라마,2026,/title/143430,kinolights,시리즈,11
+티빙,58,대한민국에서 건물주 되는 법,드라마,2026,/title/150092,kinolights,시리즈,12
+티빙,60,유미의 세포들 시즌 2,드라마,2022,/title/102735,kinolights,시리즈,13
+티빙,61,왕의 남자,영화,2005,/title/1175,kinolights,영화,14
+티빙,63,F1 더 무비,영화,2025,/title/135607,kinolights,영화,15
+티빙,65,발레리나,영화,2017,/title/4476,kinolights,영화,16
+티빙,73,롱 베케이션,드라마,1996,/title/95738,kinolights,시리즈,17
+티빙,74,정글쥬스,영화,2002,/title/5940,kinolights,영화,18
+티빙,76,테인티드 러브,영화,2023,/title/136463,kinolights,영화,19
+티빙,77,입청운,드라마,2025,/title/147654,kinolights,시리즈,20
+티빙,78,백월범성,드라마,2025,/title/140762,kinolights,시리즈,21
+티빙,81,은교,영화,2012,/title/9628,kinolights,영화,22
+티빙,98,운지우,드라마,2023,/title/126948,kinolights,시리즈,23
+티빙,100,앵도호박,드라마,2025,/title/144981,kinolights,시리즈,24
