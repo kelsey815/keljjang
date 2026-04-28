@@ -1,17 +1,24 @@
 platform,rank,title,content_type,year,href,source,kind,platform_rank
-왓챠,8,좋좋소,시리즈,,https://watcha.com/contents/tR4JrKo,watcha_home,시리즈,1
-왓챠,9,키딩 시즌 1,시리즈,,https://watcha.com/contents/tEKYWbV,watcha_home,시리즈,2
-왓챠,10,언프레임드,시리즈,,https://watcha.com/contents/tlLr4Ae,watcha_home,시리즈,3
-왓챠,11,성하체통: 체통 파괴 로맨스,시리즈,,https://watcha.com/contents/tPj16b8,watcha_home,시리즈,4
-왓챠,12,열두 통의 편지,시리즈,,https://watcha.com/contents/tRWmj26,watcha_home,시리즈,5
-왓챠,13,어글리 시스터,영화,,https://watcha.com/contents/mOkLQGz,watcha_home,영화,6
-왓챠,14,애니: 널 사랑해,시리즈,,https://watcha.com/contents/tPd3rey,watcha_home,시리즈,7
-왓챠,15,덱스터: 뉴 블러드,시리즈,,https://watcha.com/contents/tR4Jqbm,watcha_home,시리즈,8
-왓챠,16,포커 페이스,시리즈,,https://watcha.com/contents/tE6YLBr,watcha_home,시리즈,9
-왓챠,17,입청운,시리즈,,https://watcha.com/contents/tR2eJwe,watcha_home,시리즈,10
-왓챠,18,빨간마스크 KF94,영화,,https://watcha.com/contents/mOopNrP,watcha_home,영화,11
-왓챠,19,스킨스 시즌 1,시리즈,,https://watcha.com/contents/tR2BjQR,watcha_home,시리즈,12
-왓챠,20,대몽귀리: 꿈에서 깨어 그대를 만나네,시리즈,,https://watcha.com/contents/tRB6QmD,watcha_home,시리즈,13
+왓챠,1,히티드 라이벌리 시즌 1,시리즈,,https://watcha.com/contents/tEKzVJV,watcha_home,시리즈,1
+왓챠,2,황천의 츠가이,시리즈,,https://watcha.com/contents/tP8aDzd,watcha_home,시리즈,2
+왓챠,3,성하체통: 체통 파괴 로맨스,시리즈,,https://watcha.com/contents/tPj16b8,watcha_home,시리즈,3
+왓챠,4,아름다운 초저녁달,시리즈,,https://watcha.com/contents/tPJZqz3,watcha_home,시리즈,4
+왓챠,5,키딩 시즌 1,시리즈,,https://watcha.com/contents/tEKYWbV,watcha_home,시리즈,5
+왓챠,6,이세계 유유자적 농가,시리즈,,https://watcha.com/contents/tlObd36,watcha_home,시리즈,6
+왓챠,7,Sonny Boy,시리즈,,https://watcha.com/contents/tR4Jr1D,watcha_home,시리즈,7
+왓챠,8,힘내라! 나카무라 군!!,시리즈,,https://watcha.com/contents/tPDOK7r,watcha_home,시리즈,8
+왓챠,9,용사형에 처함,시리즈,,https://watcha.com/contents/tlGN0np,watcha_home,시리즈,9
+왓챠,10,귀족 전생 ~축복받은 태생으로 최강의 힘을 손에 넣다~,시리즈,,https://watcha.com/contents/tR5K231,watcha_home,시리즈,10
+왓챠,11,이하범상,시리즈,,https://watcha.com/contents/tlAnrQY,watcha_home,시리즈,11
+왓챠,12,전생했더니 슬라임이었던 건에 대하여,시리즈,,https://watcha.com/contents/tPd3aLN,watcha_home,시리즈,12
+왓챠,13,토탈 이클립스,영화,,https://watcha.com/contents/mM5rQEd,watcha_home,영화,13
+왓챠,14,패왕별희 디 오리지널,영화,,https://watcha.com/contents/mJO1awO,watcha_home,영화,14
+왓챠,15,태풍이 지나가고,영화,,https://watcha.com/contents/mO2Mo6N,watcha_home,영화,15
+왓챠,16,정반대의 너와 나,시리즈,,https://watcha.com/contents/tEqZAj1,watcha_home,시리즈,16
+왓챠,17,히든,영화,,https://watcha.com/contents/m5YJlQW,watcha_home,영화,17
+왓챠,18,최종병기 앨리스,시리즈,,https://watcha.com/contents/tEojz4y,watcha_home,시리즈,18
+왓챠,19,온화한 귀족의 휴가의 권장,시리즈,,https://watcha.com/contents/tEKzVBy,watcha_home,시리즈,19
+왓챠,20,무사태평 영주의 즐거운 영지 방어 ~생산계 마법으로 이름 없는 마을을 최강의 성채 도시로~,시리즈,,https://watcha.com/contents/tRB6O3q,watcha_home,시리즈,20
 웨이브,1,[극장판] 명탐정 코난: 세기말의 마술사 - 4K 리마스터링,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001256,wavve_api,영화,1
 웨이브,1,21세기 대군부인,시리즈,,https://www.wavve.com/player/vod?programid=M_T60518G,wavve_api,시리즈,1
 웨이브,2,바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000378,wavve_api,영화,3
@@ -72,27 +79,27 @@ platform,rank,title,content_type,year,href,source,kind,platform_rank
 쿠팡플레이,18,왕좌의 게임,시리즈,,,coupang_manual,시리즈,18
 쿠팡플레이,19,포풍추영,영화,,,coupang_manual,영화,19
 쿠팡플레이,20,동화지막 청불입니다 무삭제판,영화,,,coupang_manual,영화,20
-티빙,1,은밀한 감사,드라마,2026,/title/151219,kinolights,시리즈,1
-티빙,7,허수아비,드라마,2026,/title/151039,kinolights,시리즈,2
-티빙,20,바람,영화,2009,/title/10803,kinolights,영화,3
-티빙,21,구기동 프렌즈,예능,2026,/title/150858,kinolights,시리즈,4
-티빙,24,선재 업고 튀어,드라마,2024,/title/130294,kinolights,시리즈,5
-티빙,25,하트시그널5,예능,2026,/title/151625,kinolights,시리즈,6
-티빙,34,포풍추영,영화,2025,/title/146154,kinolights,영화,7
-티빙,43,순수의 시대,영화,2015,/title/5985,kinolights,영화,8
-티빙,51,브릭레이어,영화,2024,/title/125579,kinolights,영화,9
-티빙,56,이토록 친밀한 배신자,드라마,2024,/title/134887,kinolights,시리즈,10
-티빙,57,유미의 세포들 시즌 3,드라마,2026,/title/143430,kinolights,시리즈,11
-티빙,58,대한민국에서 건물주 되는 법,드라마,2026,/title/150092,kinolights,시리즈,12
-티빙,60,유미의 세포들 시즌 2,드라마,2022,/title/102735,kinolights,시리즈,13
-티빙,61,왕의 남자,영화,2005,/title/1175,kinolights,영화,14
-티빙,63,F1 더 무비,영화,2025,/title/135607,kinolights,영화,15
-티빙,65,발레리나,영화,2017,/title/4476,kinolights,영화,16
-티빙,73,롱 베케이션,드라마,1996,/title/95738,kinolights,시리즈,17
-티빙,74,정글쥬스,영화,2002,/title/5940,kinolights,영화,18
-티빙,76,테인티드 러브,영화,2023,/title/136463,kinolights,영화,19
-티빙,77,입청운,드라마,2025,/title/147654,kinolights,시리즈,20
-티빙,78,백월범성,드라마,2025,/title/140762,kinolights,시리즈,21
-티빙,81,은교,영화,2012,/title/9628,kinolights,영화,22
-티빙,98,운지우,드라마,2023,/title/126948,kinolights,시리즈,23
-티빙,100,앵도호박,드라마,2025,/title/144981,kinolights,시리즈,24
+티빙,1,은밀한 감사,드라마,2026.0,/title/151219,kinolights,시리즈,1
+티빙,7,허수아비,드라마,2026.0,/title/151039,kinolights,시리즈,2
+티빙,20,바람,영화,2009.0,/title/10803,kinolights,영화,3
+티빙,21,구기동 프렌즈,예능,2026.0,/title/150858,kinolights,시리즈,4
+티빙,24,선재 업고 튀어,드라마,2024.0,/title/130294,kinolights,시리즈,5
+티빙,25,하트시그널5,예능,2026.0,/title/151625,kinolights,시리즈,6
+티빙,34,포풍추영,영화,2025.0,/title/146154,kinolights,영화,7
+티빙,43,순수의 시대,영화,2015.0,/title/5985,kinolights,영화,8
+티빙,51,브릭레이어,영화,2024.0,/title/125579,kinolights,영화,9
+티빙,56,이토록 친밀한 배신자,드라마,2024.0,/title/134887,kinolights,시리즈,10
+티빙,57,유미의 세포들 시즌 3,드라마,2026.0,/title/143430,kinolights,시리즈,11
+티빙,58,대한민국에서 건물주 되는 법,드라마,2026.0,/title/150092,kinolights,시리즈,12
+티빙,60,유미의 세포들 시즌 2,드라마,2022.0,/title/102735,kinolights,시리즈,13
+티빙,61,왕의 남자,영화,2005.0,/title/1175,kinolights,영화,14
+티빙,63,F1 더 무비,영화,2025.0,/title/135607,kinolights,영화,15
+티빙,65,발레리나,영화,2017.0,/title/4476,kinolights,영화,16
+티빙,73,롱 베케이션,드라마,1996.0,/title/95738,kinolights,시리즈,17
+티빙,74,정글쥬스,영화,2002.0,/title/5940,kinolights,영화,18
+티빙,76,테인티드 러브,영화,2023.0,/title/136463,kinolights,영화,19
+티빙,77,입청운,드라마,2025.0,/title/147654,kinolights,시리즈,20
+티빙,78,백월범성,드라마,2025.0,/title/140762,kinolights,시리즈,21
+티빙,81,은교,영화,2012.0,/title/9628,kinolights,영화,22
+티빙,98,운지우,드라마,2023.0,/title/126948,kinolights,시리즈,23
+티빙,100,앵도호박,드라마,2025.0,/title/144981,kinolights,시리즈,24
