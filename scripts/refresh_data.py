@@ -487,7 +487,7 @@ def _search_naver_movie(page, title: str, year: str, override_url: str | None = 
     queries = []
     if year:
         queries.extend([f"{title} {year} 영화", f"영화 {title} {year}"])
-    queries.extend([f"{title} 영화", f"영화 {title}"])
+    queries.extend([f"{title} 영화", f"영화 {title}", title])
     for q in queries:
         url = f"https://search.naver.com/search.naver?query={urllib.parse.quote(q)}"
         try:
