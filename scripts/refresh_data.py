@@ -228,40 +228,60 @@ def _collect_watcha_once(browser) -> list[dict]:
         if not hit:
             print("[왓챠 native] '왓챠 TOP 20' 섹션 못 찾음", file=sys.stderr)
             return rows
-        # 섹션 뷰포트에 맞추고 모든 아이템 alt/innerText 로드될 때까지 충분히 대기
+        # 섹션 뷰포트에 맞추고 lazy load 트리거
         page.evaluate("""() => {
             const els = Array.from(document.querySelectorAll('h1,h2,h3,h4,div,span'));
             const t = els.find(e => (e.innerText||'').trim() === '왓챠 TOP 20');
             if (t) t.scrollIntoView({behavior:'instant', block:'center'});
         }""")
-        page.wait_for_timeout(3500)
-        items = page.evaluate("""() => {
+        page.wait_for_timeout(3000)
+        # "왓챠 TOP 20"은 가로 캐러셀이고 'Go to Next' 클릭 시 앞쪽 카드를
+        # DOM에서 밀어내고 새 카드를 뒤에 보여준다. 그래서 끝까지 누르면
+        # 마지막 윈도우만 남아 1~7위가 사라진다. 매 슬라이드마다 카드를
+        # 캡처해서 처음 보는 href만 등장 순서대로 누적해야 20개 모두 잡힘.
+        # (DOM 자연 순서 = rank 순서)
+        ordered: list[dict] = []  # type: ignore[var-annotated]
+        seen: set[str] = set()
+        get_cards_js = """() => {
             const els = Array.from(document.querySelectorAll('h1,h2,h3,h4,div,span'));
-            const titleEl = els.find(e => (e.innerText||'').trim() === '왓챠 TOP 20');
-            if (!titleEl) return [];
-            const pick = (c) => Array.from(c.querySelectorAll('a[href*="/contents/"]'))
-                .slice(0, 22)
-                .map((a, i) => {
+            const t = els.find(e => (e.innerText||'').trim() === '왓챠 TOP 20');
+            const sec = t && t.closest('section');
+            if (!sec) return [];
+            return Array.from(sec.querySelectorAll('a[href*=\"/contents/\"]'))
+                .filter(a => !/single_promote_id=/.test(a.getAttribute('href')||''))
+                .map(a => {
                     const img = a.querySelector('img[alt]');
-                    const alt = img ? img.getAttribute('alt') : '';
-                    const txt = (a.innerText || '').replace(/\\s+/g, ' ').trim();
-                    // alt 비어 있어도 innerText로 제목 확보 (lazy load 우회)
-                    return { idx: i + 1, href: a.getAttribute('href'), alt: alt || txt };
+                    return {
+                        href: a.getAttribute('href') || '',
+                        alt: (img ? img.getAttribute('alt') : '') || a.getAttribute('aria-label') || ''
+                    };
                 });
-            let c = titleEl.parentElement;
-            for (let d=0; d<15 && c; d++) {
-                const links = c.querySelectorAll('a[href*="/contents/"]');
-                if (links.length >= 18) return pick(c);
-                c = c.parentElement;
-            }
-            c = titleEl.parentElement;
-            for (let d=0; d<15 && c; d++) {
-                const links = c.querySelectorAll('a[href*="/contents/"]');
-                if (links.length >= 10) return pick(c);
-                c = c.parentElement;
-            }
-            return [];
-        }""")
+        }"""
+        for _ in range(15):
+            cards = page.evaluate(get_cards_js)
+            for c in cards:
+                h = c.get("href") or ""
+                if h and h not in seen:
+                    seen.add(h)
+                    ordered.append(c)
+            if len(ordered) >= 20:
+                break
+            clicked = page.evaluate("""() => {
+                const els = Array.from(document.querySelectorAll('h1,h2,h3,h4,div,span'));
+                const t = els.find(e => (e.innerText||'').trim() === '왓챠 TOP 20');
+                const sec = t && t.closest('section');
+                const btn = sec && sec.querySelector('button[aria-label=\"Go to Next\"]');
+                if (!btn || btn.disabled) return false;
+                btn.click();
+                return true;
+            }""")
+            if not clicked:
+                break
+            page.wait_for_timeout(900)
+        items = [
+            {"idx": i + 1, "href": c["href"], "alt": c["alt"]}
+            for i, c in enumerate(ordered[:20])
+        ]
         for it in items[:20]:
             title = (it.get("alt") or "").strip()
             href = it.get("href") or ""
