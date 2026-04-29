@@ -421,6 +421,43 @@ _NAVER_CARD_AUDI_RE = re.compile(r"관객수\s*[\|｜\n]+\s*([\d,\.]+)\s*(만|�
 _VARIANT_KW = ["인터내셔널", "감독판", "확장판", "리마스터링", "재편집", "무삭제"]
 
 
+def _clean_title_variants(title: str) -> list[str]:
+    """검색용 타이틀 변형들. 원본 → prefix 제거 → suffix 제거 → 시즌 제거 → 부제 제거.
+
+    [극장판]/[감독판] 같은 대괄호 prefix, " - 4K 리마스터링" 같은 부속 표기,
+    "시즌 N" 같은 시즌 표기, ":" 뒤 부제를 차례로 떼서 후보 확장.
+    네이버 인포리스트 카드는 정제된 원제목에만 매칭되는 경우가 많아 필요.
+    """
+    out: list[str] = []
+    seen: set[str] = set()
+
+    def add(t: str) -> None:
+        t = t.strip()
+        if t and t not in seen:
+            seen.add(t)
+            out.append(t)
+
+    add(title)
+    cleaned = re.sub(r"^\s*\[[^\]]+\]\s*", "", title).strip()
+    add(cleaned)
+    base = cleaned or title
+    no_suffix = re.sub(
+        r"\s*[-–]\s*(?:4K\s*리마스터링|리마스터링|리마스터|IMAX|아이맥스|"
+        r"디렉터스\s*컷|감독판|무삭제판|디\s*오리지널)\s*$",
+        "",
+        base,
+        flags=re.I,
+    ).strip()
+    add(no_suffix)
+    no_season = re.sub(
+        r"\s*(?:시즌\s*\d+|Season\s*\d+|S\d+)\s*$", "", no_suffix or base, flags=re.I
+    ).strip()
+    add(no_season)
+    no_subtitle = re.sub(r"\s*[:：][^:：]+$", "", no_season or base).strip()
+    add(no_subtitle)
+    return out
+
+
 def _find_audi_movie_card(body: str) -> int | None:
     m = _NAVER_CARD_AUDI_RE.search(body)
     if m:
@@ -505,9 +542,18 @@ def _search_naver_movie(page, title: str, year: str, override_url: str | None = 
             return best
 
     queries = []
-    if year:
-        queries.extend([f"{title} {year} 영화", f"영화 {title} {year}"])
-    queries.extend([f"{title} 영화", f"영화 {title}", title])
+    seen_q: set[str] = set()
+    def _add(q: str) -> None:
+        if q and q not in seen_q:
+            seen_q.add(q)
+            queries.append(q)
+    for t in _clean_title_variants(title):
+        if year:
+            _add(f"{t} {year} 영화")
+            _add(f"영화 {t} {year}")
+        _add(f"{t} 영화")
+        _add(f"영화 {t}")
+        _add(t)
     for q in queries:
         url = f"https://search.naver.com/search.naver?query={urllib.parse.quote(q)}"
         try:
@@ -567,9 +613,21 @@ def _search_naver_movie(page, title: str, year: str, override_url: str | None = 
 def _search_naver_series(page, title: str, year: str) -> dict:
     """시리즈용 — 장르만 추출 (개봉일·관객수 해당없음, 연출은 동명작 구분용)."""
     queries = []
-    if year:
-        queries.extend([f"{title} {year} 드라마", f"{title} {year} 예능", f"{title} {year}"])
-    queries.extend([f"{title} 드라마", f"{title} 예능", title])
+    seen_q: set[str] = set()
+    def _add(q: str) -> None:
+        if q and q not in seen_q:
+            seen_q.add(q)
+            queries.append(q)
+    for t in _clean_title_variants(title):
+        if year:
+            _add(f"{t} {year} 드라마")
+            _add(f"{t} {year} 예능")
+            _add(f"{t} {year}")
+        _add(f"{t} 드라마")
+        _add(f"{t} 예능")
+        _add(f"{t} 웹예능")
+        _add(f"{t} 애니메이션")
+        _add(t)
     best = {"director": "", "genres": ""}
     for q in queries:
         url = f"https://search.naver.com/search.naver?query={urllib.parse.quote(q)}"
