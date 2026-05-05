@@ -13,7 +13,7 @@ import streamlit as st
 
 DATA = Path(__file__).parent / "data"
 
-PLATFORMS = ["쿠팡플레이", "티빙", "왓챠", "웨이브"]
+PLATFORMS = ["티빙", "웨이브", "쿠팡플레이", "왓챠"]
 
 
 def _clean_year(s: pd.Series) -> pd.Series:

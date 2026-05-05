@@ -32,7 +32,7 @@ st.title("🏆 플랫폼별 랭킹 비교 대시보드")
 meta = load_meta()
 refreshed = meta.get("refreshed_at", "—")
 st.caption(
-    f"쿠팡플레이 / 티빙 / 왓챠 / 웨이브 OTT 상위 랭킹 · 네이버 영화 메타  ·  **데이터 갱신: {refreshed}**"
+    f"티빙 / 웨이브 / 쿠팡플레이 / 왓챠 OTT 상위 랭킹 · 네이버 영화 메타  ·  **데이터 갱신: {refreshed}**"
 )
 
 movies_df = load_movies()
