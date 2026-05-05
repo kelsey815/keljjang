@@ -19,46 +19,26 @@ platform,rank,title,content_type,year,href,source,kind,platform_rank
 왓챠,18,전생했더니 슬라임이었던 건에 대하여,시리즈,,https://watcha.com/contents/tPd3aLN,watcha_home,시리즈,18
 왓챠,19,썸머워즈,영화,,https://watcha.com/contents/mOb4jX5,watcha_home,영화,19
 왓챠,20,헤이트풀 8,영화,,https://watcha.com/contents/mWqJ94B,watcha_home,영화,20
-웨이브,1,[극장판] 짱구는 못말려: 초화려! 작열하는 떡잎마을 댄서즈,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001248,wavve_api,영화,1
 웨이브,1,21세기 대군부인,시리즈,,https://www.wavve.com/player/vod?programid=M_T60518G,wavve_api,시리즈,1
-웨이브,2,[감독판] 바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000215,wavve_api,영화,3
-웨이브,2,은밀한 감사,시리즈,,https://www.wavve.com/player/vod?programid=C3519_C35000000082,wavve_api,시리즈,3
-웨이브,3,월드워Z,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011431,wavve_api,영화,5
-웨이브,3,첫 번째 남자,시리즈,,https://www.wavve.com/player/vod?programid=M_T60528G,wavve_api,시리즈,5
-웨이브,4,트랜스포머,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011154,wavve_api,영화,7
-웨이브,4,나 혼자 산다,시리즈,,https://www.wavve.com/player/vod?programid=M_1002831100000100000,wavve_api,시리즈,7
-웨이브,5,용감한 시민,영화,,https://www.wavve.com/player/movie?contentid=GMV_WV01_WV000000070,wavve_api,영화,9
-웨이브,5,놀면 뭐하니?,시리즈,,https://www.wavve.com/player/vod?programid=M_1004711100000100000,wavve_api,시리즈,9
-웨이브,6,포풍추영,영화,,https://www.wavve.com/player/movie?contentid=GMV_C901_SG0000193480,wavve_api,영화,11
-웨이브,6,탐정들의 영업비밀,시리즈,,https://www.wavve.com/player/vod?programid=C2501_WPG2230354D,wavve_api,시리즈,11
-웨이브,7,[극장판] 명탐정 코난: 세기말의 마술사 - 4K 리마스터링,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001256,wavve_api,영화,13
-웨이브,7,붉은 진주,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0500,wavve_api,시리즈,13
-웨이브,8,극한직업,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000007,wavve_api,영화,15
-웨이브,8,오은영 리포트-결혼 지옥,시리즈,,https://www.wavve.com/player/vod?programid=M_T40915S,wavve_api,시리즈,15
-웨이브,9,젠틀맨,영화,,https://www.wavve.com/player/movie?contentid=GMV_WV01_WV000000053,wavve_api,영화,17
-웨이브,9,전지적 참견 시점,시리즈,,https://www.wavve.com/player/vod?programid=M_1003594100000100000,wavve_api,시리즈,17
-웨이브,10,트랜스포머: 패자의 역습,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011155,wavve_api,영화,19
-웨이브,10,소라와 진경,시리즈,,https://www.wavve.com/player/vod?programid=M_T70734G,wavve_api,시리즈,19
-웨이브,11,너의 이름은.,영화,,https://www.wavve.com/player/movie?contentid=GMV_MC01_MC000000036,wavve_api,영화,21
-웨이브,11,1박2일 시즌4,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2005-0230_1,wavve_api,시리즈,21
-웨이브,12,퍼펙트 게임,영화,,https://www.wavve.com/player/movie?contentid=GMV_CL01_JY0000011773,wavve_api,영화,23
-웨이브,12,조선의 사랑꾼,시리즈,,https://www.wavve.com/player/vod?programid=CS1_C202200194,wavve_api,시리즈,23
-웨이브,13,트랜스포머 3,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011134,wavve_api,영화,25
-웨이브,13,히든아이,시리즈,,https://www.wavve.com/player/vod?programid=M03_PA000793,wavve_api,시리즈,25
-웨이브,14,포레스트 검프,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011145,wavve_api,영화,27
-웨이브,14,사랑을 처방해 드립니다,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0419,wavve_api,시리즈,27
-웨이브,15,[극장판] 명탐정 코난: 척안의 잔상,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000001246,wavve_api,영화,29
-웨이브,15,냉장고를 부탁해 since2014,시리즈,,https://www.wavve.com/player/vod?programid=J3801_J38000000003,wavve_api,시리즈,29
-웨이브,16,스파이더맨: 노 웨이 홈,영화,,https://www.wavve.com/player/movie?contentid=GMV_CF01_SY0000011741,wavve_api,영화,31
-웨이브,16,리버스,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000188,wavve_api,시리즈,31
-웨이브,17,범블비,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011261,wavve_api,영화,33
-웨이브,17,베팅 온 팩트,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000187,wavve_api,시리즈,33
-웨이브,18,바람,영화,,https://www.wavve.com/player/movie?contentid=GMV_EN01_EN000000378,wavve_api,영화,35
-웨이브,18,기쁜 우리 좋은 날,시리즈,,https://www.wavve.com/player/vod?programid=K01_T2026-0027,wavve_api,시리즈,35
-웨이브,19,딥 임팩트,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011141,wavve_api,영화,37
-웨이브,19,용감한 형사들 5,시리즈,,https://www.wavve.com/player/vod?programid=C5701_C57000000080,wavve_api,시리즈,37
-웨이브,20,바빌론,영화,,https://www.wavve.com/player/movie?contentid=GMV_CQ01_PT0000011383,wavve_api,영화,39
-웨이브,20,악마가 말한다 박왕열,시리즈,,https://www.wavve.com/player/vod?programid=J3801_J38000000270,wavve_api,시리즈,39
+웨이브,2,은밀한 감사,시리즈,,https://www.wavve.com/player/vod?programid=C3519_C35000000082,wavve_api,시리즈,2
+웨이브,3,첫 번째 남자,시리즈,,https://www.wavve.com/player/vod?programid=M_T60528G,wavve_api,시리즈,3
+웨이브,4,나 혼자 산다,시리즈,,https://www.wavve.com/player/vod?programid=M_1002831100000100000,wavve_api,시리즈,4
+웨이브,5,놀면 뭐하니?,시리즈,,https://www.wavve.com/player/vod?programid=M_1004711100000100000,wavve_api,시리즈,5
+웨이브,6,탐정들의 영업비밀,시리즈,,https://www.wavve.com/player/vod?programid=C2501_WPG2230354D,wavve_api,시리즈,6
+웨이브,7,붉은 진주,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0500,wavve_api,시리즈,7
+웨이브,8,오은영 리포트-결혼 지옥,시리즈,,https://www.wavve.com/player/vod?programid=M_T40915S,wavve_api,시리즈,8
+웨이브,9,전지적 참견 시점,시리즈,,https://www.wavve.com/player/vod?programid=M_1003594100000100000,wavve_api,시리즈,9
+웨이브,10,소라와 진경,시리즈,,https://www.wavve.com/player/vod?programid=M_T70734G,wavve_api,시리즈,10
+웨이브,11,1박2일 시즌4,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2005-0230_1,wavve_api,시리즈,11
+웨이브,12,조선의 사랑꾼,시리즈,,https://www.wavve.com/player/vod?programid=CS1_C202200194,wavve_api,시리즈,12
+웨이브,13,히든아이,시리즈,,https://www.wavve.com/player/vod?programid=M03_PA000793,wavve_api,시리즈,13
+웨이브,14,사랑을 처방해 드립니다,시리즈,,https://www.wavve.com/player/vod?programid=K02_T2025-0419,wavve_api,시리즈,14
+웨이브,15,냉장고를 부탁해 since2014,시리즈,,https://www.wavve.com/player/vod?programid=J3801_J38000000003,wavve_api,시리즈,15
+웨이브,16,리버스,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000188,wavve_api,시리즈,16
+웨이브,17,베팅 온 팩트,시리즈,,https://www.wavve.com/player/vod?programid=C9901_C99000000187,wavve_api,시리즈,17
+웨이브,18,기쁜 우리 좋은 날,시리즈,,https://www.wavve.com/player/vod?programid=K01_T2026-0027,wavve_api,시리즈,18
+웨이브,19,용감한 형사들 5,시리즈,,https://www.wavve.com/player/vod?programid=C5701_C57000000080,wavve_api,시리즈,19
+웨이브,20,악마가 말한다 박왕열,시리즈,,https://www.wavve.com/player/vod?programid=J3801_J38000000270,wavve_api,시리즈,20
 쿠팡플레이,1,SNL KOREA,시리즈,,,coupang_manual,시리즈,1
 쿠팡플레이,2,닥터신,시리즈,,,coupang_manual,시리즈,2
 쿠팡플레이,3,나는 SOLO,시리즈,,,coupang_manual,시리즈,3

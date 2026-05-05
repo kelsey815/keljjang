@@ -230,56 +230,49 @@ def collect_tving_naver(browser, target_n: int = 20) -> list[dict]:
 # ---------- 웨이브 자체 API ----------
 
 def collect_wavve_native() -> list[dict]:
+    """웨이브 메인 "오늘의 TOP 20" 섹션 = CN2 통합 랭킹 (영화+VOD).
+
+    home API의 catalog_list[10] = `통합 랭킹 밴드 (영화+VOD)` (id=CN2).
+    영화/시리즈가 섞여 자연스럽게 1~20 단일 순번이 매겨진다.
+    is_movie 판정은 refer_id가 GMV_로 시작하는지로 결정.
+    """
     headers = {"Referer": "https://www.wavve.com/", "Accept": "application/json"}
-    urls = [
-        ("movie", (
-            "https://apis.wavve.com/v1/catalog?broadcastid=MN503"
-            "&catalogType=ranking&category=movie&data=catalog&genre=svod"
-            "&limit=20&mtype=svod&offset=0&orderby=viewtime&rankingType=top"
-            f"&uicode=MN503&uiparent=GN51-MN503&uirank=22&uitype=band_98&isBand=true&{WAVVE_COMMON}"
-        )),
-        ("series", (
-            "https://apis.wavve.com/v1/catalog?broadcastid=CN2"
-            "&catalogType=ranking&data=catalog&genre=svod"
-            "&limit=20&offset=0&orderby=viewtime&rankingType=top"
-            f"&uicode=CN2&isBand=true&{WAVVE_COMMON}"
-        )),
-    ]
+    url = (
+        "https://apis.wavve.com/v1/catalog?broadcastid=CN2"
+        "&catalogType=ranking&data=catalog&genre=svod"
+        "&limit=20&offset=0&orderby=viewtime&rankingType=top"
+        f"&uicode=CN2&isBand=true&{WAVVE_COMMON}"
+    )
     rows: list[dict] = []
-    for bucket, u in urls:
+    try:
+        resp = requests.get(url, headers=headers, timeout=15)
+        ctxs = resp.json().get("data", {}).get("context_list", [])
+    except Exception as e:  # noqa: BLE001
+        print(f"[웨이브 native] ERROR: {e}", file=sys.stderr)
+        return rows
+    for c in ctxs:
+        s = c.get("series", {}) or {}
+        rid = s.get("refer_id") or ""
+        title = (s.get("title") or "").strip()
         try:
-            resp = requests.get(u, headers=headers, timeout=15)
-            ctxs = resp.json().get("data", {}).get("context_list", [])
-        except Exception as e:  # noqa: BLE001
-            print(f"[웨이브 native {bucket}] ERROR: {e}", file=sys.stderr)
+            rk = int(c.get("additional_information", {}).get("rank") or 0)
+        except (TypeError, ValueError):
             continue
-        for c in ctxs:
-            s = c.get("series", {}) or {}
-            rid = s.get("refer_id") or ""
-            title = (s.get("title") or "").strip()
-            try:
-                rk = int(c.get("additional_information", {}).get("rank") or 0)
-            except (TypeError, ValueError):
-                continue
-            if not title or not rk:
-                continue
-            is_movie = rid.startswith("GMV_")
-            if bucket == "movie" and not is_movie:
-                continue
-            if bucket == "series" and is_movie:
-                continue
-            rows.append({
-                "platform": "웨이브",
-                "rank": rk,
-                "title": title,
-                "content_type": "영화" if is_movie else "시리즈",
-                "year": "",
-                "href": (
-                    f"https://www.wavve.com/player/movie?contentid={rid}"
-                    if is_movie else f"https://www.wavve.com/player/vod?programid={rid}"
-                ),
-                "source": "wavve_api",
-            })
+        if not title or not rk:
+            continue
+        is_movie = rid.startswith("GMV_")
+        rows.append({
+            "platform": "웨이브",
+            "rank": rk,
+            "title": title,
+            "content_type": "영화" if is_movie else "시리즈",
+            "year": "",
+            "href": (
+                f"https://www.wavve.com/player/movie?contentid={rid}"
+                if is_movie else f"https://www.wavve.com/player/vod?programid={rid}"
+            ),
+            "source": "wavve_api",
+        })
     return rows
 
 
