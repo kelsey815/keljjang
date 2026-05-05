@@ -56,17 +56,23 @@ selected_platforms = [
     if st.sidebar.checkbox(plat, value=True, key=f"plat_{plat}")
 ]
 st.sidebar.markdown("")
-rank_limit = st.sidebar.slider("플랫폼별 Top N", 5, 30, 20)
 only_movies = st.sidebar.checkbox(
     "영화만 표시",
     value=False,
     help="체크하면 시리즈(드라마·예능 등)를 숨깁니다.",
 )
+only_series = st.sidebar.checkbox(
+    "시리즈만 표시",
+    value=False,
+    help="체크하면 영화를 숨깁니다.",
+)
 
 view = merged[merged["platform"].isin(selected_platforms)].copy()
-view = view[view["platform_rank"] <= rank_limit]
-if only_movies:
+view = view[view["platform_rank"] <= 20]
+if only_movies and not only_series:
     view = view[view["kind"] == "영화"]
+elif only_series and not only_movies:
+    view = view[view["kind"] == "시리즈"]
 
 
 def _format_audi(n) -> str:
