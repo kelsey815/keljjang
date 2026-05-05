@@ -79,22 +79,23 @@ platform,rank,title,content_type,year,href,source,kind,platform_rank
 쿠팡플레이,18,왕좌의 게임,시리즈,,,coupang_manual,시리즈,18
 쿠팡플레이,19,포풍추영,영화,,,coupang_manual,영화,19
 쿠팡플레이,20,동화지막 청불입니다 무삭제판,영화,,,coupang_manual,영화,20
-티빙,1,허수아비,드라마,2026,/title/151039,kinolights,시리즈,1
-티빙,2,은밀한 감사,드라마,2026,/title/151219,kinolights,시리즈,2
-티빙,20,선재 업고 튀어,드라마,2024,/title/130294,kinolights,시리즈,3
-티빙,22,바람,영화,2009,/title/10803,kinolights,영화,4
-티빙,23,하트시그널5,예능,2026,/title/151625,kinolights,시리즈,5
-티빙,25,유미의 세포들 시즌 3,드라마,2026,/title/143430,kinolights,시리즈,6
-티빙,32,기생춘,영화,2020,/title/95593,kinolights,영화,7
-티빙,34,구기동 프렌즈,예능,2026,/title/150858,kinolights,시리즈,8
-티빙,40,꽃보다 청춘 : 리미티드 에디션,예능,2026,/title/152138,kinolights,시리즈,9
-티빙,43,내 새끼의 연애2,예능,2026,/title/150187,kinolights,시리즈,10
-티빙,51,유미의 세포들 시즌 2,드라마,2022,/title/102735,kinolights,시리즈,11
-티빙,67,포풍추영,영화,2025,/title/146154,kinolights,영화,12
-티빙,72,"장화, 홍련",영화,2003,/title/9423,kinolights,영화,13
-티빙,79,F1 더 무비,영화,2025,/title/135607,kinolights,영화,14
-티빙,85,순수의 시대,영화,2015,/title/5985,kinolights,영화,15
-티빙,88,입청운,드라마,2025,/title/147654,kinolights,시리즈,16
-티빙,96,카센타,영화,2019,/title/69046,kinolights,영화,17
-티빙,97,유미의 세포들 시즌 1,드라마,2021,/title/97660,kinolights,시리즈,18
-티빙,100,은교,영화,2012,/title/9628,kinolights,영화,19
+티빙,1,허수아비,시리즈,2026.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=40928883&qvt=0&query=%ED%97%88%EC%88%98%EC%95%84%EB%B9%84,naver_tving_recommend,시리즈,1
+티빙,2,은밀한 감사,시리즈,2026.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=37367485&qvt=0&query=%EC%9D%80%EB%B0%80%ED%95%9C%20%EA%B0%90%EC%82%AC,naver_tving_recommend,시리즈,2
+티빙,3,유미의 세포들 시즌 3,시리즈,2026.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=blFB&pkid=356&os=40902664&qvt=0&query=%EC%9C%A0%EB%AF%B8%EC%9D%98%20%EC%84%B8%ED%8F%AC%EB%93%A4%20%EC%8B%9C%EC%A6%8C3,naver_tving_recommend,시리즈,3
+티빙,4,첫 번째 남자,시리즈,2025.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=39834874&qvt=0&query=%EC%B2%AB%20%EB%B2%88%EC%A7%B8%20%EB%82%A8%EC%9E%90,naver_tving_recommend,시리즈,4
+티빙,5,무명전설,시리즈,2026.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=37058009&qvt=0&query=%EB%AC%B4%EB%AA%85%EC%A0%84%EC%84%A4,naver_tving_recommend,시리즈,5
+티빙,6,꽃보다 청춘 : 리미티드 에디션,시리즈,2026.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=41076192&qvt=0&query=%EA%BD%83%EB%B3%B4%EB%8B%A4%20%EC%B2%AD%EC%B6%98%20%EB%A6%AC%EB%AF%B8%ED%8B%B0%EB%93%9C%20%EC%97%90%EB%94%94%EC%85%98,naver_tving_recommend,시리즈,6
+티빙,7,선재 업고 튀어,시리즈,2024.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=31930589&qvt=0&query=%EC%84%A0%EC%9E%AC%20%EC%97%85%EA%B3%A0%20%ED%8A%80%EC%96%B4,naver_tving_recommend,시리즈,7
+티빙,8,하트시그널5,시리즈,2026.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=40933851&qvt=0&query=%ED%95%98%ED%8A%B8%EC%8B%9C%EA%B7%B8%EB%84%90%20%EC%8B%9C%EC%A6%8C5,naver_tving_recommend,시리즈,8
+티빙,9,기생춘,영화,,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bkEw&pkid=68&os=17965672&qvt=0&query=%EA%B8%B0%EC%83%9D%EC%B6%98,naver_tving_recommend,영화,9
+티빙,10,나 혼자 산다,시리즈,2013.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=673019&qvt=0&query=%EB%82%98%20%ED%98%BC%EC%9E%90%20%EC%82%B0%EB%8B%A4,naver_tving_recommend,시리즈,10
+티빙,11,조선의 사랑꾼,시리즈,2022.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=29545231&qvt=0&query=%EC%A1%B0%EC%84%A0%EC%9D%98%20%EC%82%AC%EB%9E%91%EA%BE%BC,naver_tving_recommend,시리즈,11
+티빙,12,소라와 진경,시리즈,2026.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=40920516&qvt=0&query=%EC%86%8C%EB%9D%BC%EC%99%80%20%EC%A7%84%EA%B2%BD,naver_tving_recommend,시리즈,12
+티빙,13,바람,영화,2009.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bkEw&pkid=68&os=1804433&qvt=0&query=%EC%98%81%ED%99%94%20%EB%B0%94%EB%9E%8C,naver_tving_recommend,영화,13
+티빙,14,슬기로운 의사생활 시즌2,시리즈,2021.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=18168942&qvt=0&query=%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4%20%EC%9D%98%EC%82%AC%EC%83%9D%ED%99%9C%20%EC%8B%9C%EC%A6%8C2,naver_tving_recommend,시리즈,14
+티빙,15,탐정들의 영업비밀,시리즈,2024.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=33545463&qvt=0&query=%ED%83%90%EC%A0%95%EB%93%A4%EC%9D%98%20%EC%98%81%EC%97%85%EB%B9%84%EB%B0%80,naver_tving_recommend,시리즈,15
+티빙,16,놀면 뭐하니?,시리즈,2019.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=9904885&qvt=0&query=%EB%86%80%EB%A9%B4%20%EB%AD%90%ED%95%98%EB%8B%88,naver_tving_recommend,시리즈,16
+티빙,17,연애기숙학교 돌싱N모솔,시리즈,2026.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=40950271&qvt=0&query=%EC%97%B0%EC%95%A0%EA%B8%B0%EC%88%99%ED%95%99%EA%B5%90%20%EB%8F%8C%EC%8B%B1N%EB%AA%A8%EC%86%94,naver_tving_recommend,시리즈,17
+티빙,18,냉장고를 부탁해 since2014,시리즈,2024.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=35470956&qvt=0&query=%EB%83%89%EC%9E%A5%EA%B3%A0%EB%A5%BC%20%EB%B6%80%ED%83%81%ED%95%B4%20%EC%8B%A0%EC%8A%A4%202014,naver_tving_recommend,시리즈,18
+티빙,19,써니,영화,2011.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bkEw&pkid=68&os=1809653&qvt=0&query=%EC%98%81%ED%99%94%20%EC%8D%A8%EB%8B%88,naver_tving_recommend,영화,19
+티빙,20,전지적 참견 시점,시리즈,2018.0,https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjkw&pkid=57&os=6272014&qvt=0&query=%EC%A0%84%EC%A7%80%EC%A0%81%20%EC%B0%B8%EA%B2%AC%20%EC%8B%9C%EC%A0%90,naver_tving_recommend,시리즈,20

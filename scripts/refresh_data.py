@@ -43,8 +43,9 @@ _INFOLIST_KEYS = {"감독", "연출", "출연", "주연", "각본", "장르", "�
                   "채널", "편성", "회차", "제작", "러닝타임", "국가", "기획",
                   "등급", "상영", "언어"}
 
-KINOLIGHTS_PLATFORMS = {
-    "티빙": "tving",
+KINOLIGHTS_PLATFORMS: dict[str, str] = {
+    # 티빙은 키노라이츠 종합 차트 100위 중 보유작 매칭이 19개 한도라
+    # 별도 collect_tving_naver()로 네이버 검색 "지금 많이 찾는" 섹션을 사용한다.
 }
 
 COUPANG_MANUAL_PATH = DATA / "coupang_manual.csv"
@@ -128,6 +129,101 @@ def collect_from_kinolights(browser) -> list[dict]:
                 "href": it.get("href") or "",
                 "source": "kinolights",
             })
+    return rows
+
+
+# ---------- 티빙: 네이버 검색 "이런 티빙 어때요? > 지금 많이 찾는" ----------
+#
+# 티빙 자체 사이트(www.tving.com)는 봇에 SPA 셸만 주고 차트 API도 막혀 있다.
+# 키노라이츠 종합 차트(/ranking/tving)도 100위 중 티빙 보유작 19개가 한도라
+# 20위 채우기 불가. 그래서 네이버 검색 "티빙" 결과의 "지금 많이 찾는" 섹션
+# (한 페이지 8개 + prefetch 8개 + "다음" 버튼 페이지네이션)에서 상위 20개를
+# DOM 순서 그대로 가져온다.
+
+_TVING_CARD_META_RE = re.compile(r"한국\s+(\d{4})?\s*(\d+\.\d+)?\s*([가-힣A-Za-z][^\s/#]*)?")
+
+
+def _classify_tving_card(card_text: str) -> tuple[str, str]:
+    """카드 텍스트에서 (content_type, year) 추출.
+
+    형식 예: "허수아비 / 한국 2026 ENA / 티빙 / 바로보기"  → 시리즈
+            "바람 / 한국 2009 9.29 / #액션..."           → 영화 (year=2009)
+            "기생춘 / 한국 2.00 / #코미디"                → 영화 (year 미상)
+    채널 자리에 평점(\\d+\\.\\d+)만 있고 채널명이 없으면 영화로 본다.
+    """
+    flat = re.sub(r"\s+", " ", card_text)
+    m = re.search(r"한국\s+(?:(\d{4})\s+)?(\d+\.\d+)?\s*([가-힣A-Za-z][^\s/#]*)?", flat)
+    if not m:
+        return ("시리즈", "")
+    year = m.group(1) or ""
+    rating = m.group(2)
+    channel = (m.group(3) or "").strip()
+    # 채널명이 비었거나 평점만 있는 경우 → 영화
+    is_movie = (rating is not None and not channel)
+    return ("영화" if is_movie else "시리즈", year)
+
+
+def collect_tving_naver(browser, target_n: int = 20) -> list[dict]:
+    ctx = browser.new_context(
+        user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/121 Safari/537.36",
+        viewport={"width": 1440, "height": 900}, locale="ko-KR",
+    )
+    page = ctx.new_page()
+    rows: list[dict] = []
+    try:
+        page.goto("https://search.naver.com/search.naver?query=티빙", timeout=25000)
+        page.wait_for_timeout(3500)
+        seen: set[str] = set()
+        ordered: list[dict] = []
+        get_cards_js = """() => {
+            const sec = document.querySelector('section._cs_contents_recommendation');
+            if (!sec) return [];
+            return Array.from(sec.querySelectorAll('.info_box')).map(it => {
+                const img = it.querySelector('.thumb_area img[alt]');
+                const a = it.querySelector('.thumb_area a.thumb');
+                return {
+                    title: img ? img.getAttribute('alt') : '',
+                    href: a ? a.getAttribute('href') : '',
+                    text: (it.innerText||'').replace(/\\s+/g,' ').trim(),
+                };
+            });
+        }"""
+        for _ in range(6):
+            cards = page.evaluate(get_cards_js)
+            for c in cards:
+                t = (c.get("title") or "").strip()
+                if t and t not in seen:
+                    seen.add(t)
+                    ordered.append(c)
+            if len(ordered) >= target_n:
+                break
+            clicked = page.evaluate("""() => {
+                const sec = document.querySelector('section._cs_contents_recommendation');
+                const btn = sec && sec.querySelector('a.pg_next');
+                if (!btn) return false;
+                btn.click(); return true;
+            }""")
+            if not clicked:
+                break
+            page.wait_for_timeout(2000)
+        for i, c in enumerate(ordered[:target_n]):
+            ct, yr = _classify_tving_card(c.get("text") or "")
+            rows.append({
+                "platform": "티빙",
+                "rank": i + 1,
+                "title": c["title"].strip(),
+                "content_type": ct,
+                "year": yr,
+                "href": (
+                    f"https://search.naver.com/search.naver{c['href']}"
+                    if c.get("href", "").startswith("?") else (c.get("href") or "")
+                ),
+                "source": "naver_tving_recommend",
+            })
+    except Exception as e:  # noqa: BLE001
+        print(f"[티빙 네이버] ERROR: {e}", file=sys.stderr)
+    finally:
+        ctx.close()
     return rows
 
 
@@ -342,6 +438,7 @@ def collect_coupang_manual() -> list[dict]:
 def collect_ott(browser) -> pd.DataFrame:
     all_rows: list[dict] = []
     all_rows.extend(collect_from_kinolights(browser))
+    all_rows.extend(collect_tving_naver(browser))
     all_rows.extend(collect_wavve_native())
     all_rows.extend(collect_watcha_native(browser))
     all_rows.extend(collect_coupang_manual())
